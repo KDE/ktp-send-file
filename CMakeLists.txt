@@ -23,6 +23,8 @@ include_directories(
 #   ${QT_QTSQL_INCLUDE_DIR}
 #   ${QT_QTWEBKIT_INCLUDE_DIR}
   ${KDE4_INCLUDES}
+  ${TELEPATHY_QT4_INCLUDE_DIR}
+
 #   ${SOPRANO_INCLUDE_DIR}
 )
 
@@ -42,6 +44,7 @@ kde4_add_executable(telepathy-kde-file-transfer ${MAINWINDOW_SRCS})
 
 # Link against the needed libraries
 target_link_libraries(telepathy-kde-file-transfer
+    ${TELEPATHY_QT4_LIBRARIES}
 #   ${QT_QTNETWORK_LIBRARY}
 #   ${QT_QTDBUS_LIBRARY}
 #   ${QT_QTSQL_LIBRARY}
