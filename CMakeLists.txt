@@ -1,8 +1,16 @@
 project(telepathy-dolphin-file-transfer-app)
 
+set (CMAKE_MODULE_PATH
+     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"
+     ${CMAKE_MODULE_PATH}
+)
+
 find_package(KDE4 REQUIRED)
+find_package(TelepathyQt4 REQUIRED)
+
 include(KDE4Defaults)
 include(MacroLibrary)
+
 
 
 # Add the compiler flags
