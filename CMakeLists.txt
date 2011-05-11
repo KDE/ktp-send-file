@@ -32,6 +32,11 @@ include_directories(
 set(MAINWINDOW_SRCS
     mainwindow.cpp
     main.cpp
+    accounts-model-item.cpp
+    account-filter-model.cpp
+    accounts-model.cpp
+    contact-model-item.cpp
+    tree-node.cpp
 )
 
 set(TELEPATHY_KDE_FILE_TRANSFER_UI

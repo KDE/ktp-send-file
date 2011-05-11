@@ -5,6 +5,13 @@
 #include <KFileItemList>
 #include <KIO/PreviewJob>
 
+#include <TelepathyQt4/AccountManager>
+#include <TelepathyQt4/PendingReady>
+
+
+#include "accounts-model.h"
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow)
@@ -22,6 +29,26 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(showPreview(KFileItem, QPixmap)));
     connect(job, SIGNAL(failed(KFileItem)),
             this, SLOT(showIcon(KFileItem)));
+
+
+    Tp::AccountFactoryPtr  accountFactory = Tp::AccountFactory::create(QDBusConnection::sessionBus(),
+                                                                       Tp::Features() << Tp::Account::FeatureCore);
+
+    Tp::ConnectionFactoryPtr connectionFactory = Tp::ConnectionFactory::create(QDBusConnection::sessionBus());
+    Tp::ChannelFactoryPtr channelFactory = Tp::ChannelFactory::create(QDBusConnection::sessionBus());
+
+    Tp::ContactFactoryPtr contactFactory = Tp::ContactFactory::create(Tp::Features()  << Tp::Contact::FeatureAlias
+                                                                      << Tp::Contact::FeatureAvatarData
+                                                                      << Tp::Contact::FeatureSimplePresence
+                                                                      << Tp::Contact::FeatureCapabilities);
+
+    m_accountManager = Tp::AccountManager::create(QDBusConnection::sessionBus(),
+                                                                      accountFactory,
+                                                                      connectionFactory,
+                                                                      channelFactory,
+                                                                      contactFactory);
+
+    connect(m_accountManager->becomeReady(), SIGNAL(finished(Tp::PendingOperation*)), SLOT(onAccountManagerReady()));
 }
 
 MainWindow::~MainWindow()
@@ -39,4 +66,10 @@ void MainWindow::showIcon(const KFileItem &file)
 {
     //icon is     file.iconName();
 
+}
+
+void MainWindow::onAccountManagerReady()
+{
+    AccountsModel *model = new AccountsModel(m_accountManager, this);
+    ui->listView->setModel(model);
 }
