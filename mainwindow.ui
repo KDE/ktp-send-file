@@ -54,17 +54,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="filePreviewLabel">
-         <property name="minimumSize">
-          <size>
-           <width>120</width>
-           <height>120</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
+        <widget class="KImageFilePreview" name="filePreview"/>
        </item>
        <item>
         <widget class="QLabel" name="fileNameLabel">
@@ -151,6 +141,11 @@
    <class>KCategorizedView</class>
    <extends>QListView</extends>
    <header>kcategorizedview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KImageFilePreview</class>
+   <extends>QWidget</extends>
+   <header>kimagefilepreview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

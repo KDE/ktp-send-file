@@ -28,22 +28,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << KApplication::arguments();
 
-    QString fileName = KCmdLineArgs::parsedArgs()->arg(0);
-
-    //FIXME if remote make it local.
-
-
-    KFileItem file(KUrl(fileName), "image/png", KFileItem::Unknown);
-
-    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, ui->filePreviewLabel->size());
-
-    ui->fileNameLabel->setText(file.name());
-    ui->filePreviewLabel->setText(QString());
-
-    connect(job, SIGNAL(gotPreview(KFileItem, QPixmap)),
-            this, SLOT(showPreview(KFileItem, QPixmap)));
-    connect(job, SIGNAL(failed(KFileItem)),
-            this, SLOT(showIcon(KFileItem)));
+    KUrl filePath (KCmdLineArgs::parsedArgs()->arg(0));
+    ui->filePreview->showPreview(filePath);
+    ui->fileNameLabel->setText(filePath.fileName());
 
 
     Tp::AccountFactoryPtr  accountFactory = Tp::AccountFactory::create(QDBusConnection::sessionBus(),
@@ -78,18 +65,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::showPreview(const KFileItem &file, const QPixmap &pixmap)
-{
-    ui->filePreviewLabel->setMinimumSize(pixmap.size());
-    ui->filePreviewLabel->setPixmap(pixmap);
-}
-
-void MainWindow::showIcon(const KFileItem &file)
-{
-    //icon is     file.iconName();
-
 }
 
 void MainWindow::onAccountManagerReady()
