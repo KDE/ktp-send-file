@@ -21,8 +21,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void showPreview(const KFileItem &file, const QPixmap &pixmap);
-    void showIcon(const KFileItem &file);
     void onAccountManagerReady();
 
 

@@ -5,6 +5,8 @@
 #include <KLocale>
 #include <KUrl>
 
+#include <QDebug>
+
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
@@ -20,21 +22,19 @@ int main(int argc, char *argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
-    options.add("+[file]", ki18n("File to send"));
-
+    options.add("+file", ki18n("A required argument 'file'"));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-
-    if (args->count()) {
-        qDebug() << "FILE URL IS: " << args->url(0).url();
-    }
-
     KApplication app;
+
+    if (args->count() != 1) {
+        KCmdLineArgs::usageError(i18n("You must supply a file argument"));
+    }
 
     MainWindow *w = new MainWindow();
     w->show();
-
     return app.exec();
+
 }
 
