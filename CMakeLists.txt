@@ -66,7 +66,7 @@ target_link_libraries(telepathy-kde-file-transfer
 )
 
 install(TARGETS telepathy-kde-file-transfer ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES mainwindow.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES telepathy-dolphin.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 
 macro_display_feature_log()
 

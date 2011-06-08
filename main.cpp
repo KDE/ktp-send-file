@@ -3,6 +3,7 @@
 #include <KApplication>
 #include <KAboutData>
 #include <KLocale>
+#include <KUrl>
 
 #include "mainwindow.h"
 
@@ -19,8 +20,16 @@ int main(int argc, char *argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
+    options.add("+[file]", ki18n("File to send"));
+
     KCmdLineArgs::addCmdLineOptions(options);
-    KCmdLineArgs::parsedArgs();
+
+    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+    if (args->count()) {
+        qDebug() << "FILE URL IS: " << args->url(0).url();
+    }
+
     KApplication app;
 
     MainWindow *w = new MainWindow();

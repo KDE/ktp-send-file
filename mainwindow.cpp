@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     KFileItem file(KUrl("/home/david/a.png"), "image/png", KFileItem::Unknown);
 
-    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, ui->filePreviewLabel->size());
+    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, ui->filePreviewLabel->width(), ui->filePreviewLabel->height());
 
     ui->fileNameLabel->setText(file.name());
     ui->filePreviewLabel->setText(QString());
