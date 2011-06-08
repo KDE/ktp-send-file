@@ -218,41 +218,18 @@ int AccountsModel::rowCount(const QModelIndex &parent) const
 QVariant AccountsModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        qDebug() << "fail";
         return QVariant();
     }
 
     return mPriv->node(index)->data(role);
 }
 
-Tp::AccountPtr AccountsModel::accountForIndex(const QModelIndex &index) const
-{
-    TreeNode *accountNode = mPriv->node(index);
-    AccountsModelItem *item = qobject_cast<AccountsModelItem *>(accountNode);
-    if (item) {
-        return item->account();
-    } else {
-        return Tp::AccountPtr();
-    }
-}
 
-Tp::ContactPtr AccountsModel::contactForIndex(const QModelIndex& index) const
+Tp::AccountPtr AccountsModel::accountForContactItem(ContactModelItem *contactItem) const
 {
-    TreeNode *contactNode = mPriv->node(index);
-    ContactModelItem *item = qobject_cast<ContactModelItem *>(contactNode);
-    if (item) {
-        return item->contact();
-    } else {
-        return Tp::ContactPtr();
-    }
-}
-
-Tp::AccountPtr AccountsModel::accountForContactIndex(const QModelIndex& index) const
-{
-    TreeNode *contactNode = mPriv->node(index);
-    AccountsModelItem *item = qobject_cast<AccountsModelItem*>(contactNode->parent());
-    if (item) {
-        return item->account();
+    AccountsModelItem *accountItem = qobject_cast<AccountsModelItem*>(contactItem->parent());
+    if (accountItem) {
+        return accountItem->account();
     } else {
         return Tp::AccountPtr();
     }

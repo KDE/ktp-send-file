@@ -44,6 +44,7 @@ struct ContactModelItem::Private
 ContactModelItem::ContactModelItem(const Tp::ContactPtr &contact)
     : mPriv(new Private(contact))
 {
+
     connect(contact.data(),
             SIGNAL(aliasChanged(QString)),
             SLOT(onChanged()));
@@ -94,7 +95,6 @@ QVariant ContactModelItem::data(int role) const
     case AccountsModel::PresenceStatusRole:
         return mPriv->mContact->presence().status();
     case AccountsModel::PresenceTypeRole:
-        qDebug() << "asked for presence type role";
         return mPriv->mContact->presence().type();
     case AccountsModel::PresenceMessageRole:
         return mPriv->mContact->presence().statusMessage();
@@ -131,6 +131,7 @@ QVariant ContactModelItem::data(int role) const
     default:
         break;
     }
+
     return QVariant();
 }
 

@@ -37,6 +37,7 @@ set(MAINWINDOW_SRCS
     accounts-model.cpp
     contact-model-item.cpp
     tree-node.cpp
+    flat-model-proxy.cpp
 )
 
 set(TELEPATHY_KDE_FILE_TRANSFER_UI

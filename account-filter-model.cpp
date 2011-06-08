@@ -47,7 +47,7 @@ bool AccountFilterModel::filterAcceptsRow(int source_row, const QModelIndex &sou
 {
     bool rowAccepted = true;
     //if we're looking at filtering an account or not
-    if (true) {
+    if (source_parent != QModelIndex()) {
         //filter by name in the contact list
         if (m_filterByName &&
                 !source_parent.child(source_row, 0).data(AccountsModel::AliasRole).toString()
@@ -56,27 +56,30 @@ bool AccountFilterModel::filterAcceptsRow(int source_row, const QModelIndex &sou
             rowAccepted = false;
         }
 
-        qDebug() << "checking to filter offline user " << m_filterOfflineUsers;
-
-        qDebug() << source_parent.child(source_row, 0).data(AccountsModel::PresenceTypeRole).toUInt();
-
         //filter offline users out
         if (m_filterOfflineUsers &&
                 ((source_parent.child(source_row, 0).data(AccountsModel::PresenceTypeRole).toUInt()
-                 == Tp::ConnectionPresenceTypeOffline) ||
+                == Tp::ConnectionPresenceTypeOffline) ||
                 (source_parent.child(source_row, 0).data(AccountsModel::PresenceTypeRole).toUInt()
-                 == Tp::ConnectionPresenceTypeUnknown))) {
+                == Tp::ConnectionPresenceTypeUnknown))) {
 
             rowAccepted = false;
         }
     } else {
-        if (!sourceModel()->index(source_row, 0).data(AccountsModel::EnabledRole).toBool()) {
-            rowAccepted = false;
-        }
-        if (sourceModel()->index(source_row, 0).data(AccountsModel::ConnectionStatusRole).toUInt()
-            != Tp::ConnectionStatusConnected) {
+        QModelIndex index = sourceModel()->index(source_row, 0);
+        if (index.isValid()) {
+            if (m_groupsActive) {
+                rowAccepted = true;
+            } else {
+                if (!index.data(AccountsModel::EnabledRole).toBool()) {
+                    rowAccepted = false;
+                }
+                if (index.data(AccountsModel::ConnectionStatusRole).toUInt()
+                    != Tp::ConnectionStatusConnected) {
 
-            rowAccepted = false;
+                    rowAccepted = false;
+                }
+            }
         }
     }
 
@@ -99,34 +102,34 @@ void AccountFilterModel::clearFilterString()
 
 bool AccountFilterModel::lessThan( const QModelIndex &left, const QModelIndex &right ) const
 {
-    uint leftPresence;
-    uint rightPresence;
+        uint leftPresence;
+        uint rightPresence;
 
-    QString leftDisplayedName = sourceModel()->data(left).toString();
-    QString rightDisplayedName = sourceModel()->data(right).toString();
+        QString leftDisplayedName = sourceModel()->data(left).toString();
+        QString rightDisplayedName = sourceModel()->data(right).toString();
 
-    if (sortRole() == AccountsModel::PresenceTypeRole) {
-        leftPresence = sourceModel()->data(left, AccountsModel::PresenceTypeRole).toUInt();
-        rightPresence = sourceModel()->data(right, AccountsModel::PresenceTypeRole).toUInt();
+        if (sortRole() == AccountsModel::PresenceTypeRole) {
+            leftPresence = sourceModel()->data(left, AccountsModel::PresenceTypeRole).toUInt();
+            rightPresence = sourceModel()->data(right, AccountsModel::PresenceTypeRole).toUInt();
 
-        if (leftPresence == rightPresence) {
-            return QString::localeAwareCompare(leftDisplayedName, rightDisplayedName) < 0;
+            if (leftPresence == rightPresence) {
+                return QString::localeAwareCompare(leftDisplayedName, rightDisplayedName) < 0;
+            } else {
+                if (leftPresence == Tp::ConnectionPresenceTypeAvailable) {
+                    return true;
+                }
+                if (leftPresence == Tp::ConnectionPresenceTypeUnset ||
+                        leftPresence == Tp::ConnectionPresenceTypeOffline ||
+                        leftPresence == Tp::ConnectionPresenceTypeUnknown ||
+                        leftPresence == Tp::ConnectionPresenceTypeError) {
+                    return false;
+                }
+
+                return leftPresence < rightPresence;
+            }
         } else {
-            if (leftPresence == Tp::ConnectionPresenceTypeAvailable) {
-                return true;
-            }
-            if (leftPresence == Tp::ConnectionPresenceTypeUnset ||
-                    leftPresence == Tp::ConnectionPresenceTypeOffline ||
-                    leftPresence == Tp::ConnectionPresenceTypeUnknown ||
-                    leftPresence == Tp::ConnectionPresenceTypeError) {
-                return false;
-            }
-
-            return leftPresence < rightPresence;
+            return QString::localeAwareCompare(leftDisplayedName, rightDisplayedName) < 0;
         }
-    } else {
-        return QString::localeAwareCompare(leftDisplayedName, rightDisplayedName) < 0;
-    }
 }
 
 void AccountFilterModel::setSortByPresence(bool enabled)
@@ -141,6 +144,16 @@ void AccountFilterModel::setSortByPresence(bool enabled)
 bool AccountFilterModel::isSortedByPresence() const
 {
     return sortRole() == AccountsModel::PresenceTypeRole;
+}
+
+bool AccountFilterModel::groupsActive() const
+{
+    return m_groupsActive;
+}
+
+void AccountFilterModel::setGroupsActive(bool active)
+{
+    m_groupsActive = active;
 }
 
 #include "account-filter-model.moc"
