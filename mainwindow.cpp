@@ -84,9 +84,10 @@ void MainWindow::showIcon(const KFileItem &file)
 void MainWindow::onAccountManagerReady()
 {
     AccountsModel *model = new AccountsModel(m_accountManager, this);
-    FlatModelProxy *flatProxyModel = new FlatModelProxy(model);
     AccountFilterModel *filterModel = new AccountFilterModel(this);
-    filterModel->setSourceModel(flatProxyModel);
+    filterModel->setSourceModel(model);
     filterModel->filterOfflineUsers(true);
-    ui->listView->setModel(filterModel);
+    FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
+
+    ui->listView->setModel(flatProxyModel);
 }
