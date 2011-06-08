@@ -4,6 +4,10 @@
 #include <KFileItem>
 #include <KFileItemList>
 #include <KIO/PreviewJob>
+#include <KApplication>
+#include <KCmdLineArgs>
+#include <KMimeType>
+
 
 #include <TelepathyQt4/AccountManager>
 #include <TelepathyQt4/PendingReady>
@@ -22,7 +26,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    KFileItem file(KUrl("/home/david/a.png"), "image/png", KFileItem::Unknown);
+    qDebug() << KApplication::arguments();
+
+    QString fileName = KCmdLineArgs::parsedArgs()->arg(0);
+
+    //FIXME if remote make it local.
+
+
+    KFileItem file(KUrl(fileName), "image/png", KFileItem::Unknown);
 
     KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, ui->filePreviewLabel->size());
 
