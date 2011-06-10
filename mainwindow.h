@@ -10,6 +10,7 @@ namespace Ui {
     class MainWindow;
 }
 
+class AccountsModel;
 class KFileItem;
 
 class MainWindow : public QWidget
@@ -22,10 +23,13 @@ public:
 
 private slots:
     void onAccountManagerReady();
+    void onDialogAccepted();
 
+    void slotFileTransferFinished(Tp::PendingOperation *op);
 
 private:
     Ui::MainWindow *ui;
+    AccountsModel *m_accountsModel;
     Tp::AccountManagerPtr m_accountManager;
 };
 

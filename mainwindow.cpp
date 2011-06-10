@@ -10,28 +10,25 @@
 
 
 #include <TelepathyQt4/AccountManager>
+#include <TelepathyQt4/PendingChannelRequest>
 #include <TelepathyQt4/PendingReady>
 
 
 #include "accounts-model.h"
 #include "flat-model-proxy.h"
 #include "account-filter-model.h"
+#include "contact-model-item.h"
 
+#define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KDE.FileTransfer"
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_accountsModel(0)
 {
     Tp::registerTypes();
 
     ui->setupUi(this);
-
-//     KFileItem file(KUrl("/home/david/a.png"), "image/png", KFileItem::Unknown);
-//
-//     KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, ui->filePreviewLabel->width(), ui->filePreviewLabel->height());
-//
-//     ui->fileNameLabel->setText(file.name());
-//     ui->filePreviewLabel->setText(QString());
 
     qDebug() << KApplication::arguments();
 
@@ -68,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     connect(m_accountManager->becomeReady(), SIGNAL(finished(Tp::PendingOperation*)), SLOT(onAccountManagerReady()));
+
+    connect(ui->buttonBox, SIGNAL(accepted()), SLOT(onDialogAccepted()));
+    connect(ui->buttonBox, SIGNAL(rejected()), SLOT(close()));
 }
 
 MainWindow::~MainWindow()
@@ -77,11 +77,58 @@ MainWindow::~MainWindow()
 
 void MainWindow::onAccountManagerReady()
 {
-    AccountsModel *model = new AccountsModel(m_accountManager, this);
+    m_accountsModel = new AccountsModel(m_accountManager, this);
     AccountFilterModel *filterModel = new AccountFilterModel(this);
-    filterModel->setSourceModel(model);
+    filterModel->setSourceModel(m_accountsModel);
     filterModel->filterOfflineUsers(true);
     FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
 
     ui->listView->setModel(flatProxyModel);
 }
+
+void MainWindow::onDialogAccepted()
+{
+    // don't do anytghing if no contact has been selected
+    if (!ui->listView->currentIndex().isValid()) {
+        // show message box?
+        return;
+    }
+
+    ContactModelItem *contactModelItem = ui->listView->currentIndex().data(AccountsModel::ItemRole).value<ContactModelItem*>();
+    Tp::ContactPtr contact = contactModelItem->contact();
+    Tp::AccountPtr sendingAccount = m_accountsModel->accountForContactItem(contactModelItem);
+
+    if (sendingAccount.isNull()) {
+        qDebug("sending account: NULL");
+    } else {
+        qDebug() << "Account is: " << sendingAccount->displayName();
+        qDebug() << "sending to: " << contact->alias();
+    }
+
+    // start sending file
+    QString filePath (KCmdLineArgs::parsedArgs()->arg(0));
+    qDebug() << "FILE TO SEND: " << filePath;
+
+    Tp::FileTransferChannelCreationProperties fileTransferProperties(filePath, KMimeType::findByFileContent(filePath)->name());
+
+    Tp::PendingChannelRequest* channelRequest = sendingAccount->createFileTransfer(contact,
+                                                                                   fileTransferProperties,
+                                                                                   QDateTime::currentDateTime(),
+                                                                                   PREFERRED_FILETRANSFER_HANDLER);
+
+    connect(channelRequest, SIGNAL(finished(Tp::PendingOperation*)), SLOT(slotFileTransferFinished(Tp::PendingOperation*)));
+}
+
+void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
+{
+    if (op->isError()) {
+        QString errorMsg(op->errorName() + ": " + op->errorMessage());
+        qDebug() << "ERROR!: " << errorMsg;
+    } else {
+        qDebug("FUCK YEAH TRANSFER STARTED");
+        // now I can close the dialog
+        close();
+    }
+}
+
+
