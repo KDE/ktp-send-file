@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+Actions=sendFile;
+MimeType=all/allfiles;
+
+[Desktop Action sendFile]
+Name=Send file via Telepathy
+Icon=kde-telepathy
+Exec=telepathy-kde-file-transfer %u
