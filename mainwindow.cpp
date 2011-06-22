@@ -7,19 +7,78 @@
 #include <KApplication>
 #include <KCmdLineArgs>
 #include <KMimeType>
+#include <KDebug>
+
+
+#include <QAbstractItemDelegate>
+#include <QPainter>
+#include <QRect>
+#include <QStyle>
+#include <QDebug>
 
 
 #include <TelepathyQt4/AccountManager>
 #include <TelepathyQt4/PendingChannelRequest>
 #include <TelepathyQt4/PendingReady>
 
-
 #include "accounts-model.h"
 #include "flat-model-proxy.h"
 #include "account-filter-model.h"
 #include "contact-model-item.h"
 
+//FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
 #define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KDE.FileTransfer"
+
+
+class ContactGridDelegate : public QAbstractItemDelegate {
+public:
+    ContactGridDelegate(QObject *parent);
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+};
+
+ContactGridDelegate::ContactGridDelegate(QObject *parent)
+    : QAbstractItemDelegate(parent)
+{
+
+}
+
+void ContactGridDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    QStyle *style = QApplication::style();
+    int textHeight = option.fontMetrics.height()*2;
+
+    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
+
+    QRect avatarRect = option.rect.adjusted(0,0,0,-textHeight);
+    QRect textRect = option.rect.adjusted(0,option.rect.height()-textHeight,0,-3);
+
+    QPixmap avatar = index.data(Qt::DecorationRole).value<QPixmap>();
+    if (avatar.isNull()) {
+        avatar = KIcon("im-user-online").pixmap(QSize(70,70));
+    }
+
+    //resize larger avatars
+    if (avatar.width() > 80 || avatar.height()> 80) {
+        avatar = avatar.scaled(QSize(80,80), Qt::KeepAspectRatio);
+        //draw leaving paddings on smaller (or non square) avatars
+    }
+    style->drawItemPixmap(painter, avatarRect, Qt::AlignCenter, avatar);
+
+
+    QTextOption textOption;
+    textOption.setAlignment(Qt::AlignCenter);
+    textOption.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+    painter->drawText(textRect, index.data().toString(), textOption);
+
+}
+
+QSize ContactGridDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    int textHeight = option.fontMetrics.height()*2;
+    return QSize(80,80+textHeight+3);
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
@@ -30,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    qDebug() << KApplication::arguments();
+    kDebug() << KApplication::arguments();
 
 
     KUrl filePath (KCmdLineArgs::parsedArgs()->arg(0));
@@ -84,6 +143,7 @@ void MainWindow::onAccountManagerReady()
     FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
 
     ui->listView->setModel(flatProxyModel);
+    ui->listView->setItemDelegate(new ContactGridDelegate(this));
 }
 
 void MainWindow::onDialogAccepted()
@@ -99,10 +159,10 @@ void MainWindow::onDialogAccepted()
     Tp::AccountPtr sendingAccount = m_accountsModel->accountForContactItem(contactModelItem);
 
     if (sendingAccount.isNull()) {
-        qDebug("sending account: NULL");
+        kDebug() << "sending account: NULL";
     } else {
-        qDebug() << "Account is: " << sendingAccount->displayName();
-        qDebug() << "sending to: " << contact->alias();
+        kDebug() << "Account is: " << sendingAccount->displayName();
+        kDebug() << "sending to: " << contact->alias();
     }
 
     // start sending file
@@ -122,10 +182,11 @@ void MainWindow::onDialogAccepted()
 void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
 {
     if (op->isError()) {
+        //FIXME map to human readable strings.
         QString errorMsg(op->errorName() + ": " + op->errorMessage());
-        qDebug() << "ERROR!: " << errorMsg;
+        kDebug() << "ERROR!: " << errorMsg;
     } else {
-        qDebug("FUCK YEAH TRANSFER STARTED");
+        kDebug() << "FUCK YEAH TRANSFER STARTED";
         // now I can close the dialog
         close();
     }
