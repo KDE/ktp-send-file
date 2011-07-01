@@ -1,4 +1,4 @@
-project(telepathy-dolphin-file-transfer-app)
+project(telepathy-kde-send-file)
 
 set (CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"
@@ -10,8 +10,6 @@ find_package(TelepathyQt4 REQUIRED)
 
 include(KDE4Defaults)
 include(MacroLibrary)
-
-
 
 # Add the compiler flags
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
@@ -29,7 +27,7 @@ include_directories(
 )
 
 # Insert your sources here
-set(MAINWINDOW_SRCS
+set(TELEPATHY_KDE_SEND_FILE_SRCS
     mainwindow.cpp
     main.cpp
     accounts-model-item.cpp
@@ -40,33 +38,24 @@ set(MAINWINDOW_SRCS
     flat-model-proxy.cpp
 )
 
-set(TELEPATHY_KDE_FILE_TRANSFER_UI
+set(TELEPATHY_KDE_SEND_FILE_UI
     mainwindow.ui)
 
-kde4_add_ui_files(MAINWINDOW_SRCS ${TELEPATHY_KDE_FILE_TRANSFER_UI})
+kde4_add_ui_files(TELEPATHY_KDE_SEND_FILE_SRCS ${TELEPATHY_KDE_SEND_FILE_UI})
 
 # Create the plasmoid
-kde4_add_executable(telepathy-kde-file-transfer ${MAINWINDOW_SRCS})
+kde4_add_executable(telepathy-kde-send-file ${TELEPATHY_KDE_SEND_FILE_SRCS})
 
 # Link against the needed libraries
-target_link_libraries(telepathy-kde-file-transfer
-    ${TELEPATHY_QT4_LIBRARIES}
-#   ${QT_QTNETWORK_LIBRARY}
-#   ${QT_QTDBUS_LIBRARY}
-#   ${QT_QTSQL_LIBRARY}
-#   ${QT_QTWEBKIT_LIBRARY}
+target_link_libraries(telepathy-kde-send-file
+  ${TELEPATHY_QT4_LIBRARIES}
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}
-#   ${KDE4_KPARTS_LIBS}
-#   ${KDE4_KNEWSTUFF3_LIBS}
-#   ${KDE4_PHONON_LIBS}
-#   ${KDE4_SOLID_LIBS}
-#   ${KDE4_NEPOMUK_LIBS}
-#   ${SOPRANO_LIBRARIES}
+
 )
 
-install(TARGETS telepathy-kde-file-transfer ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES telepathy-dolphin.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(TARGETS telepathy-kde-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES telepathy-kde-send-file.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 
 macro_display_feature_log()
 
