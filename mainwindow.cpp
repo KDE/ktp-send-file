@@ -28,14 +28,14 @@
 #include <KCmdLineArgs>
 #include <KMimeType>
 #include <KDebug>
-
+#include <KMessageBox>
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
 #include <QRect>
 #include <QStyle>
 #include <QDebug>
-
+#include <QAbstractButton>
 
 #include <TelepathyQt4/AccountManager>
 #include <TelepathyQt4/PendingChannelRequest>
@@ -197,6 +197,11 @@ void MainWindow::onDialogAccepted()
                                                                                    PREFERRED_FILETRANSFER_HANDLER);
 
     connect(channelRequest, SIGNAL(finished(Tp::PendingOperation*)), SLOT(slotFileTransferFinished(Tp::PendingOperation*)));
+
+    //disable the buttons
+    foreach(QAbstractButton* button, ui->buttonBox->buttons()) {
+        button->setEnabled(false);
+    }
 }
 
 void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
@@ -205,6 +210,8 @@ void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
         //FIXME map to human readable strings.
         QString errorMsg(op->errorName() + ": " + op->errorMessage());
         kDebug() << "ERROR!: " << errorMsg;
+        KMessageBox::error(this, i18n("Failed to send file"), i18n("File Transfer Failed"));
+        close();
     } else {
         kDebug() << "Transfer started";
         // now I can close the dialog
