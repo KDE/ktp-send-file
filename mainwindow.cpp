@@ -206,7 +206,7 @@ void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
         QString errorMsg(op->errorName() + ": " + op->errorMessage());
         kDebug() << "ERROR!: " << errorMsg;
     } else {
-        kDebug() << "FUCK YEAH TRANSFER STARTED";
+        kDebug() << "Transfer started";
         // now I can close the dialog
         close();
     }
