@@ -23,6 +23,8 @@
 
 #include <QWidget>
 
+#include <KUrl>
+
 #include <TelepathyQt4/AccountManager>
 
 
@@ -38,7 +40,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(const KUrl &url, QWidget *parent = 0);
     ~MainWindow();
 
 private slots:

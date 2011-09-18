@@ -100,7 +100,7 @@ QSize ContactGridDelegate::sizeHint(const QStyleOptionViewItem &option, const QM
 }
 
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow),
     m_accountsModel(0)
@@ -111,10 +111,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     kDebug() << KApplication::arguments();
 
-
-    KUrl filePath (KCmdLineArgs::parsedArgs()->arg(0));
-    ui->filePreview->showPreview(filePath);
-    ui->fileNameLabel->setText(filePath.fileName());
+    ui->filePreview->showPreview(url);
+    ui->fileNameLabel->setText(url.fileName());
 
 
     Tp::AccountFactoryPtr  accountFactory = Tp::AccountFactory::create(QDBusConnection::sessionBus(),

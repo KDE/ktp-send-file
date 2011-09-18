@@ -24,8 +24,9 @@
 #include <KAboutData>
 #include <KLocale>
 #include <KUrl>
+#include <KFileDialog>
+#include <KDebug>
 
-#include <QDebug>
 
 #include "mainwindow.h"
 
@@ -42,19 +43,27 @@ int main(int argc, char *argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
-    options.add("+file", ki18n("A required argument 'file'"));
+    options.add("+file", ki18n("The file to send"));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     KApplication app;
 
-    if (args->count() != 1) {
-        KCmdLineArgs::usageError(i18n("You must supply a file argument"));
+    KUrl fileToSend;
+
+    if (args->count() == 0) {
+        fileToSend = KFileDialog::getOpenUrl(KUrl("kfiledialog://telepathySendFile"), QString(), 0, i18n("Select File To Send"));
+    } else {
+        fileToSend = KCmdLineArgs::parsedArgs()->arg(0);
     }
 
-    MainWindow *w = new MainWindow();
-    w->show();
-    return app.exec();
+    if (! fileToSend.isEmpty()) {
+        MainWindow *w = new MainWindow(fileToSend);
+        w->show();
+        return app.exec();
+    } else {
+        return -1;
+    }
 
 }
 
