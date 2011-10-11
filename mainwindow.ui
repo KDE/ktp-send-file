@@ -83,6 +83,9 @@
      </item>
      <item>
       <widget class="QListView" name="listView">
+       <property name="movement">
+        <enum>QListView::Static</enum>
+       </property>
        <property name="spacing">
         <number>5</number>
        </property>
