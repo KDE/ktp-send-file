@@ -41,10 +41,11 @@
 #include <TelepathyQt4/PendingChannelRequest>
 #include <TelepathyQt4/PendingReady>
 
-#include "accounts-model.h"
 #include "flat-model-proxy.h"
-#include "account-filter-model.h"
-#include "contact-model-item.h"
+
+#include "common/models/accounts-model.h"
+#include "common/models/accounts-filter-model.h"
+#include "common/models/contact-model-item.h"
 
 //FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
 #define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KDE.FileTransfer"
@@ -155,9 +156,9 @@ MainWindow::~MainWindow()
 void MainWindow::onAccountManagerReady()
 {
     m_accountsModel = new AccountsModel(m_accountManager, this);
-    AccountFilterModel *filterModel = new AccountFilterModel(this);
+    AccountsFilterModel *filterModel = new AccountsFilterModel(this);
     filterModel->setSourceModel(m_accountsModel);
-    filterModel->filterOfflineUsers(true);
+    filterModel->setShowOfflineUsers(false);
     FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
 
     ui->listView->setModel(flatProxyModel);

@@ -26,15 +26,26 @@ include_directories(
 #   ${SOPRANO_INCLUDE_DIR}
 )
 
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.gitmodules)
+execute_process(COMMAND git submodule init
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+execute_process(COMMAND git submodule update                                                                                                                 
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+endif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.gitmodules)
+
 # Insert your sources here
 set(TELEPATHY_KDE_SEND_FILE_SRCS
     mainwindow.cpp
     main.cpp
-    accounts-model-item.cpp
-    account-filter-model.cpp
-    accounts-model.cpp
-    contact-model-item.cpp
-    tree-node.cpp
+    common/service-availability-checker.cpp
+    common/models/accounts-model-item.cpp
+    common/models/accounts-filter-model.cpp
+    common/models/accounts-model.cpp
+    common/models/contact-model-item.cpp
+    common/models/tree-node.cpp
     flat-model-proxy.cpp
 )
 
