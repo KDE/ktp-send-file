@@ -6,5 +6,12 @@ MimeType=all/allfiles;
 
 [Desktop Action sendFile]
 Name=Send file via Telepathy
+Name[hu]=Fájlküldés Telepathyval
+Name[it]=Invia file via Telepathy
+Name[pt]=Enviar o ficheiro pelo Telepathy
+Name[pt_BR]=Enviar o arquivo usando o Telepathy
+Name[sv]=Skicka fil via Telepathy
+Name[uk]=Надіслати файл за допомогою Telepathy
+Name[x-test]=xxSend file via Telepathyxx
 Icon=telepathy-kde
 Exec=telepathy-kde-send-file %u
