@@ -6,6 +6,7 @@ MimeType=all/allfiles;
 
 [Desktop Action sendFile]
 Name=Send file via Telepathy
+Name[da]=Send fil via Telepathy
 Name[hu]=Fájlküldés Telepathyval
 Name[it]=Invia file via Telepathy
 Name[nds]=Datei över Telepathy loosstüern
