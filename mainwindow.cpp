@@ -97,7 +97,7 @@ void ContactGridDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 QSize ContactGridDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     int textHeight = option.fontMetrics.height()*2;
-    return QSize(80,80+textHeight+3);
+    return QSize(84, 80 + textHeight + 3);
 }
 
 
@@ -114,7 +114,6 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
 
     ui->filePreview->showPreview(url);
     ui->fileNameLabel->setText(url.fileName());
-
 
     Tp::AccountFactoryPtr  accountFactory = Tp::AccountFactory::create(QDBusConnection::sessionBus(),
                                                                        Tp::Features() << Tp::Account::FeatureCore
