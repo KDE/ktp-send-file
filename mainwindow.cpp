@@ -29,6 +29,7 @@
 #include <KMimeType>
 #include <KDebug>
 #include <KMessageBox>
+#include <KDE/KIO/PreviewJob>
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
@@ -96,6 +97,7 @@ void ContactGridDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 
 QSize ContactGridDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    Q_UNUSED(index);
     int textHeight = option.fontMetrics.height()*2;
     return QSize(84, 80 + textHeight + 3);
 }
@@ -112,8 +114,17 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
 
     kDebug() << KApplication::arguments();
 
-    ui->filePreview->showPreview(url);
     ui->fileNameLabel->setText(url.fileName());
+
+    KFileItem file(KFileItem::Unknown, KFileItem::Unknown, url);
+    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &KIO::PreviewJob::availablePlugins());
+    job->setOverlayIconAlpha(0);
+    job->setScaleType(KIO::PreviewJob::Unscaled);
+    connect(job, SIGNAL(gotPreview(KFileItem,QPixmap)),
+            this, SLOT(onPreviewLoaded(KFileItem,QPixmap)));
+    connect(job, SIGNAL(failed(KFileItem)),
+            this, SLOT(onPreviewFailed(KFileItem)));
+
 
     Tp::AccountFactoryPtr  accountFactory = Tp::AccountFactory::create(QDBusConnection::sessionBus(),
                                                                        Tp::Features() << Tp::Account::FeatureCore
@@ -217,4 +228,13 @@ void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
     }
 }
 
+void MainWindow::onPreviewLoaded(const KFileItem& item, const QPixmap& preview)
+{
+    Q_UNUSED(item);
+    ui->filePreview->setPixmap(preview);
+}
 
+void MainWindow::onPreviewFailed(const KFileItem& item)
+{
+    kWarning() << "Loading thumb failed" << item.name();
+}

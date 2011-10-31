@@ -54,7 +54,20 @@
         </spacer>
        </item>
        <item>
-        <widget class="KImageFilePreview" name="filePreview"/>
+        <widget class="QLabel" name="filePreview">
+         <property name="minimumSize">
+          <size>
+           <width>280</width>
+           <height>280</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="fileNameLabel">
@@ -82,8 +95,16 @@
       </layout>
      </item>
      <item>
+     <layout class="QVBoxLayout" name="verticalLayout2">
+     <item>
       <widget class="QListView" name="listView">
        <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="sizeIncrement">
         <size>
          <width>80</width>
          <height>0</height>
@@ -115,8 +136,7 @@
        </property>
       </widget>
      </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+     </layout>
      </item>
     </layout>
    </item>
@@ -129,13 +149,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KImageFilePreview</class>
-   <extends>QWidget</extends>
-   <header>kimagefilepreview.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -27,7 +27,6 @@
 
 #include <TelepathyQt4/AccountManager>
 
-
 namespace Ui {
     class MainWindow;
 }
@@ -46,7 +45,8 @@ public:
 private slots:
     void onAccountManagerReady();
     void onDialogAccepted();
-
+    void onPreviewLoaded(const KFileItem &item, const QPixmap &preview);
+    void onPreviewFailed(const KFileItem &item);
     void slotFileTransferFinished(Tp::PendingOperation *op);
 
 private:
