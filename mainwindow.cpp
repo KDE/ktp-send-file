@@ -29,6 +29,8 @@
 #include <KMimeType>
 #include <KDebug>
 #include <KMessageBox>
+#include <KPixmapSequence>
+#include <KPixmapSequenceOverlayPainter>
 #include <KDE/KIO/PreviewJob>
 
 #include <QAbstractItemDelegate>
@@ -115,6 +117,10 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     kDebug() << KApplication::arguments();
 
     ui->fileNameLabel->setText(url.fileName());
+    m_busyOverlay = new KPixmapSequenceOverlayPainter(this);
+    m_busyOverlay->setSequence(KPixmapSequence("process-working", 22));
+    m_busyOverlay->setWidget(ui->filePreview);
+    m_busyOverlay->start();
 
     KFileItem file(KFileItem::Unknown, KFileItem::Unknown, url);
     KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &KIO::PreviewJob::availablePlugins());
@@ -232,9 +238,12 @@ void MainWindow::onPreviewLoaded(const KFileItem& item, const QPixmap& preview)
 {
     Q_UNUSED(item);
     ui->filePreview->setPixmap(preview);
+    m_busyOverlay->stop();
 }
 
 void MainWindow::onPreviewFailed(const KFileItem& item)
 {
     kWarning() << "Loading thumb failed" << item.name();
+    ui->filePreview->setPixmap(KIconLoader::global()->loadIcon(item.iconName(), KIconLoader::Desktop, 128));
+    m_busyOverlay->stop();
 }

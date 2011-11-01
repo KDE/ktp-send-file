@@ -27,6 +27,7 @@
 
 #include <TelepathyQt4/AccountManager>
 
+class KPixmapSequenceOverlayPainter;
 namespace Ui {
     class MainWindow;
 }
@@ -53,6 +54,8 @@ private:
     Ui::MainWindow *ui;
     AccountsModel *m_accountsModel;
     Tp::AccountManagerPtr m_accountManager;
+
+    KPixmapSequenceOverlayPainter *m_busyOverlay;
 };
 
 #endif // MAINWINDOW_H
