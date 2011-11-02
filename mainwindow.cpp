@@ -123,7 +123,8 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     m_busyOverlay->start();
 
     KFileItem file(KFileItem::Unknown, KFileItem::Unknown, url);
-    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &KIO::PreviewJob::availablePlugins());
+    QStringList availablePlugins = KIO::PreviewJob::availablePlugins();
+    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &availablePlugins);
     job->setOverlayIconAlpha(0);
     job->setScaleType(KIO::PreviewJob::Unscaled);
     connect(job, SIGNAL(gotPreview(KFileItem,QPixmap)),
