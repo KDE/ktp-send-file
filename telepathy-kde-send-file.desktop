@@ -6,5 +6,12 @@ MimeType=all/allfiles;
 
 [Desktop Action sendFile]
 Name=Send file to IM contact
+Name[hu]=Fájlküldés azonnali üzenetküldési partnernek
+Name[it]=Invia file a contatto di MI
+Name[pt]=Enviar o ficheiro para o contacto MI
+Name[pt_BR]=Enviar arquivo para contato IM
+Name[sv]=Skicka fil till direktmeddelandekontakt
+Name[uk]=Надіслати файл контакту
+Name[x-test]=xxSend file to IM contactxx
 Icon=telepathy-kde
 Exec=telepathy-kde-send-file %u
