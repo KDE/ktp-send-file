@@ -16,27 +16,24 @@
     <height>120</height>
    </size>
   </property>
-  <property name="windowTitle">
-   <string>Select Recipient</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
-   <item>
-    <widget class="QLabel" name="label">
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Select a recipient</string>
-     </property>
-    </widget>
-   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>You are about to send this file</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
@@ -95,48 +92,68 @@
       </layout>
      </item>
      <item>
-     <layout class="QVBoxLayout" name="verticalLayout2">
-     <item>
-      <widget class="QListView" name="listView">
-       <property name="minimumSize">
-        <size>
-         <width>80</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>80</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="baseSize">
-        <size>
-         <width>260</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>256</width>
-         <height>192</height>
-        </size>
-       </property>
-       <property name="movement">
-        <enum>QListView::Static</enum>
-       </property>
-       <property name="resizeMode">
-        <enum>QListView::Adjust</enum>
-       </property>
-       <property name="spacing">
-        <number>5</number>
-       </property>
-       <property name="viewMode">
-        <enum>QListView::IconMode</enum>
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
       </widget>
      </item>
-     </layout>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Select a recipient</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListView" name="listView">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>260</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>256</width>
+           <height>192</height>
+          </size>
+         </property>
+         <property name="movement">
+          <enum>QListView::Static</enum>
+         </property>
+         <property name="resizeMode">
+          <enum>QListView::Adjust</enum>
+         </property>
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <property name="viewMode">
+          <enum>QListView::IconMode</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

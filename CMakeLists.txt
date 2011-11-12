@@ -5,6 +5,7 @@ set (CMAKE_MODULE_PATH
      ${CMAKE_MODULE_PATH}
 )
 
+set(KDE_MIN_VERSION "4.7.0")
 find_package(KDE4 REQUIRED)
 find_package(TelepathyQt4 0.7.1 REQUIRED)
 
@@ -16,14 +17,8 @@ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(
   ${CMAKE_SOURCE_DIR}
   ${CMAKE_BINARY_DIR}
-#   ${QT_QTNETWORK_INCLUDE_DIR}
-#   ${QT_QTDBUS_INCLUDE_DIR}
-#   ${QT_QTSQL_INCLUDE_DIR}
-#   ${QT_QTWEBKIT_INCLUDE_DIR}
   ${KDE4_INCLUDES}
   ${TELEPATHY_QT4_INCLUDE_DIR}
-
-#   ${SOPRANO_INCLUDE_DIR}
 )
 
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.gitmodules)
@@ -31,7 +26,7 @@ execute_process(COMMAND git submodule init
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-execute_process(COMMAND git submodule update                                                                                                                 
+execute_process(COMMAND git submodule update
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 endif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.gitmodules)
