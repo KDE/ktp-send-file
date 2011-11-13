@@ -113,7 +113,7 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     Tp::registerTypes();
 
     ui->setupUi(this);
-    setWindowTitle(i18n("Send file - %1", url.fileName());
+    setWindowTitle(i18n("Send file - %1", url.fileName()));
 
     kDebug() << KApplication::arguments();
 
