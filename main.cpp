@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData("telepathy-kde-send-file",
                          "telepathy-send-file",
                          ki18n("Telepathy Send File"),
-                         "0.1");
+                         "0.2");
     aboutData.addAuthor(ki18n("David Edmundson"), ki18n("Author"), "kde@davidedmundson.co.uk");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
