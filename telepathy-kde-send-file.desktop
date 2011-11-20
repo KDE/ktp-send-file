@@ -6,6 +6,7 @@ MimeType=all/allfiles;
 
 [Desktop Action sendFile]
 Name=Send file to IM contact
+Name[da]=Send fil til IM-kontakt
 Name[de]=Datei an einen Instant-Messenger-Kontakt senden
 Name[hu]=Fájlküldés azonnali üzenetküldési partnernek
 Name[it]=Invia file a contatto di MI
