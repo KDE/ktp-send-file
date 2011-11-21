@@ -6,8 +6,10 @@ set (CMAKE_MODULE_PATH
 )
 
 set(KDE_MIN_VERSION "4.7.0")
+set(IS_TELEPATHY_KDE_INTERNAL_MODULE TRUE)
 find_package(KDE4 REQUIRED)
 find_package(TelepathyQt4 0.7.1 REQUIRED)
+find_package(KTelepathy REQUIRED)
 
 include(KDE4Defaults)
 include(MacroLibrary)
@@ -19,28 +21,13 @@ include_directories(
   ${CMAKE_BINARY_DIR}
   ${KDE4_INCLUDES}
   ${TELEPATHY_QT4_INCLUDE_DIR}
+  ${KTELEPATHY_INCLUDE_DIR}
 )
-
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.gitmodules)
-execute_process(COMMAND git submodule init
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-execute_process(COMMAND git submodule update
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-endif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.gitmodules)
 
 # Insert your sources here
 set(TELEPATHY_KDE_SEND_FILE_SRCS
     mainwindow.cpp
     main.cpp
-    common/service-availability-checker.cpp
-    common/models/accounts-model-item.cpp
-    common/models/accounts-filter-model.cpp
-    common/models/accounts-model.cpp
-    common/models/contact-model-item.cpp
-    common/models/tree-node.cpp
     flat-model-proxy.cpp
 )
 
@@ -55,6 +42,8 @@ kde4_add_executable(telepathy-kde-send-file ${TELEPATHY_KDE_SEND_FILE_SRCS})
 # Link against the needed libraries
 target_link_libraries(telepathy-kde-send-file
   ${TELEPATHY_QT4_LIBRARIES}
+  ${KTELEPATHY_LIBRARIES}
+  ${KTELEPATHY_MODELS_LIBRARIES}
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}
 
