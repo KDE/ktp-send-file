@@ -177,6 +177,10 @@ void MainWindow::onAccountManagerReady()
     AccountsFilterModel *filterModel = new AccountsFilterModel(this);
     filterModel->setSourceModel(m_accountsModel);
     filterModel->setShowOfflineUsers(false);
+
+    connect(ui->filterBar, SIGNAL(textChanged(QString)),
+            filterModel, SLOT(setFilterString(QString)));
+
     FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
 
     ui->listView->setModel(flatProxyModel);
