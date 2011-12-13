@@ -8,7 +8,7 @@ set (CMAKE_MODULE_PATH
 set(KDE_MIN_VERSION "4.7.0")
 set(IS_TELEPATHY_KDE_INTERNAL_MODULE TRUE)
 find_package(KDE4 REQUIRED)
-find_package(TelepathyQt4 0.7.1 REQUIRED)
+find_package(TelepathyQt4 0.8.9 REQUIRED)
 find_package(KTelepathy REQUIRED)
 
 include(KDE4Defaults)

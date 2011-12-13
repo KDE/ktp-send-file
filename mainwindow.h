@@ -25,7 +25,7 @@
 
 #include <KUrl>
 
-#include <TelepathyQt4/AccountManager>
+#include <TelepathyQt/AccountManager>
 
 class KPixmapSequenceOverlayPainter;
 namespace Ui {

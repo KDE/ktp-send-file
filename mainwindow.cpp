@@ -40,9 +40,9 @@
 #include <QDebug>
 #include <QAbstractButton>
 
-#include <TelepathyQt4/AccountManager>
-#include <TelepathyQt4/PendingChannelRequest>
-#include <TelepathyQt4/PendingReady>
+#include <TelepathyQt/AccountManager>
+#include <TelepathyQt/PendingChannelRequest>
+#include <TelepathyQt/PendingReady>
 
 #include "flat-model-proxy.h"
 
