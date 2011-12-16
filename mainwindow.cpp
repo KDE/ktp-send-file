@@ -177,6 +177,7 @@ void MainWindow::onAccountManagerReady()
     AccountsFilterModel *filterModel = new AccountsFilterModel(this);
     filterModel->setSourceModel(m_accountsModel);
     filterModel->setShowOfflineUsers(false);
+    filterModel->setFilterByFileTransferCapability(true);
 
     connect(ui->filterBar, SIGNAL(textChanged(QString)),
             filterModel, SLOT(setFilterString(QString)));
