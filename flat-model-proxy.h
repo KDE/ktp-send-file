@@ -1,7 +1,7 @@
 /*
  * This file is part of TelepathyQt4Yell Models
  *
- * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
+ * Copyright (C) 2010 Collabora Ltd. <info@collabora.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef _TelepathyQt4Yell_Models_flat_model_proxy_h_HEADER_GUARD_
-#define _TelepathyQt4Yell_Models_flat_model_proxy_h_HEADER_GUARD_
+#ifndef TelepathyQt4Yell_Models_flat_model_proxy_h_HEADER_GUARD
+#define TelepathyQt4Yell_Models_flat_model_proxy_h_HEADER_GUARD
 
 
 #include <QAbstractProxyModel>
@@ -61,4 +61,4 @@ private:
 
 
 
-#endif // _TelepathyQt4Yell_Models_flat_model_proxy_h_HEADER_GUARD_
+#endif // TelepathyQt4Yell_Models_flat_model_proxy_h_HEADER_GUARD
