@@ -6,10 +6,10 @@ set (CMAKE_MODULE_PATH
 )
 
 set(KDE_MIN_VERSION "4.7.0")
-set(IS_TELEPATHY_KDE_INTERNAL_MODULE TRUE)
+set(IS_KTP_INTERNAL_MODULE TRUE)
 find_package(KDE4 REQUIRED)
 find_package(TelepathyQt4 0.8.9 REQUIRED)
-find_package(KTelepathy REQUIRED)
+find_package(KTp REQUIRED)
 
 include(KDE4Defaults)
 include(MacroLibrary)
@@ -21,7 +21,7 @@ include_directories(
   ${CMAKE_BINARY_DIR}
   ${KDE4_INCLUDES}
   ${TELEPATHY_QT4_INCLUDE_DIR}
-  ${KTELEPATHY_INCLUDE_DIR}
+  ${KTP_INCLUDE_DIR}
 )
 
 # Insert your sources here
@@ -42,8 +42,8 @@ kde4_add_executable(telepathy-kde-send-file ${TELEPATHY_KDE_SEND_FILE_SRCS})
 # Link against the needed libraries
 target_link_libraries(telepathy-kde-send-file
   ${TELEPATHY_QT4_LIBRARIES}
-  ${KTELEPATHY_LIBRARIES}
-  ${KTELEPATHY_MODELS_LIBRARIES}
+  ${KTP_LIBRARIES}
+  ${KTP_MODELS_LIBRARIES}
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}
 

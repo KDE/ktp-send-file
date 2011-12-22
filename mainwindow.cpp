@@ -46,9 +46,9 @@
 
 #include "flat-model-proxy.h"
 
-#include <KTelepathy/Models/accounts-model.h>
-#include <KTelepathy/Models/accounts-filter-model.h>
-#include <KTelepathy/Models/contact-model-item.h>
+#include <KTp/Models/accounts-model.h>
+#include <KTp/Models/accounts-filter-model.h>
+#include <KTp/Models/contact-model-item.h>
 
 //FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
 #define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KDE.FileTransfer"
