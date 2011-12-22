@@ -18,4 +18,4 @@ Name[sv]=Skicka fil till direktmeddelandekontakt
 Name[uk]=Надіслати файл контакту
 Name[x-test]=xxSend file to IM contactxx
 Icon=telepathy-kde
-Exec=telepathy-kde-send-file %u
+Exec=ktp-send-file %u

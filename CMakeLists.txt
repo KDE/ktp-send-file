@@ -25,22 +25,22 @@ include_directories(
 )
 
 # Insert your sources here
-set(TELEPATHY_KDE_SEND_FILE_SRCS
+set(KTP_SEND_FILE_SRCS
     mainwindow.cpp
     main.cpp
     flat-model-proxy.cpp
 )
 
-set(TELEPATHY_KDE_SEND_FILE_UI
+set(KTP_SEND_FILE_UI
     mainwindow.ui)
 
-kde4_add_ui_files(TELEPATHY_KDE_SEND_FILE_SRCS ${TELEPATHY_KDE_SEND_FILE_UI})
+kde4_add_ui_files(KTP_SEND_FILE_SRCS ${KTP_SEND_FILE_UI})
 
 # Create the plasmoid
-kde4_add_executable(telepathy-kde-send-file ${TELEPATHY_KDE_SEND_FILE_SRCS})
+kde4_add_executable(ktp-send-file ${KTP_SEND_FILE_SRCS})
 
 # Link against the needed libraries
-target_link_libraries(telepathy-kde-send-file
+target_link_libraries(ktp-send-file
   ${TELEPATHY_QT4_LIBRARIES}
   ${KTP_LIBRARIES}
   ${KTP_MODELS_LIBRARIES}
@@ -49,8 +49,8 @@ target_link_libraries(telepathy-kde-send-file
 
 )
 
-install(TARGETS telepathy-kde-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES telepathy-kde-send-file.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES ktp-send-file.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 
 macro_display_feature_log()
 
