@@ -159,6 +159,19 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
                                                   channelFactory,
                                                   contactFactory);
 
+    m_accountsModel = new AccountsModel(this);
+    AccountsFilterModel *filterModel = new AccountsFilterModel(this);
+    filterModel->setSourceModel(m_accountsModel);
+    filterModel->setShowOfflineUsers(false);
+    filterModel->setFilterByFileTransferCapability(true);
+
+    connect(ui->filterBar, SIGNAL(textChanged(QString)),
+            filterModel, SLOT(setFilterString(QString)));
+
+    FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
+
+    ui->listView->setModel(flatProxyModel);
+    ui->listView->setItemDelegate(new ContactGridDelegate(this));
 
     connect(m_accountManager->becomeReady(), SIGNAL(finished(Tp::PendingOperation*)), SLOT(onAccountManagerReady()));
 
@@ -173,19 +186,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::onAccountManagerReady()
 {
-    m_accountsModel = new AccountsModel(m_accountManager, this);
-    AccountsFilterModel *filterModel = new AccountsFilterModel(this);
-    filterModel->setSourceModel(m_accountsModel);
-    filterModel->setShowOfflineUsers(false);
-    filterModel->setFilterByFileTransferCapability(true);
-
-    connect(ui->filterBar, SIGNAL(textChanged(QString)),
-            filterModel, SLOT(setFilterString(QString)));
-
-    FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
-
-    ui->listView->setModel(flatProxyModel);
-    ui->listView->setItemDelegate(new ContactGridDelegate(this));
+    m_accountsModel->setAccountManager(m_accountManager);
 }
 
 void MainWindow::onDialogAccepted()
