@@ -1,4 +1,4 @@
-project(telepathy-kde-send-file)
+project(ktp-send-file)
 
 set (CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"

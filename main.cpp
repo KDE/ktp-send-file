@@ -32,8 +32,7 @@
 
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("telepathy-kde-send-file",
-                         "telepathy-send-file",
+    KAboutData aboutData("ktp-send-file", 0,
                          ki18n("Telepathy Send File"),
                          "0.2.60");
     aboutData.addAuthor(ki18n("David Edmundson"), ki18n("Author"), "kde@davidedmundson.co.uk");

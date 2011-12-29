@@ -51,7 +51,7 @@
 #include <KTp/Models/contact-model-item.h>
 
 //FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
-#define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KDE.FileTransfer"
+#define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KTp.FileTransfer"
 
 
 class ContactGridDelegate : public QAbstractItemDelegate {
