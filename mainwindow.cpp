@@ -162,8 +162,8 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     m_accountsModel = new AccountsModel(this);
     AccountsFilterModel *filterModel = new AccountsFilterModel(this);
     filterModel->setSourceModel(m_accountsModel);
-    filterModel->setShowOfflineUsers(false);
-    filterModel->setFilterByFileTransferCapability(true);
+    filterModel->setPresenceTypeFilterFlags(AccountsFilterModel::ShowOnlyConnected);
+    filterModel->setCapabilityFilterFlags(AccountsFilterModel::FilterByFileTransferCapability);
 
     connect(ui->filterBar, SIGNAL(textChanged(QString)),
             filterModel, SLOT(setFilterString(QString)));
