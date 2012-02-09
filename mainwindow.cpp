@@ -37,7 +37,6 @@
 #include <QPainter>
 #include <QRect>
 #include <QStyle>
-#include <QDebug>
 #include <QAbstractButton>
 
 #include <TelepathyQt/AccountManager>
@@ -209,7 +208,7 @@ void MainWindow::onDialogAccepted()
 
     // start sending file
     QString filePath (KCmdLineArgs::parsedArgs()->arg(0));
-    qDebug() << "FILE TO SEND: " << filePath;
+    kDebug() << "FILE TO SEND: " << filePath;
 
     Tp::FileTransferChannelCreationProperties fileTransferProperties(filePath, KMimeType::findByFileContent(filePath)->name());
 
