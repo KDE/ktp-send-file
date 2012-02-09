@@ -22,21 +22,16 @@
 #include "ui_mainwindow.h"
 
 #include <KFileItem>
-#include <KFileItemList>
-#include <KIO/PreviewJob>
 #include <KApplication>
 #include <KMimeType>
 #include <KDebug>
 #include <KMessageBox>
 #include <KPixmapSequence>
 #include <KPixmapSequenceOverlayPainter>
-#include <KDE/KIO/PreviewJob>
+#include <KLineEdit>
+#include <KIO/PreviewJob>
 
-#include <QAbstractItemDelegate>
-#include <QPainter>
-#include <QRect>
-#include <QStyle>
-#include <QAbstractButton>
+#include <QtGui/QPushButton>
 
 #include <TelepathyQt/AccountManager>
 #include <TelepathyQt/PendingChannelRequest>
@@ -44,62 +39,10 @@
 
 #include <KTp/Models/accounts-model.h>
 #include <KTp/Models/accounts-filter-model.h>
-#include <KTp/Models/contact-model-item.h>
-#include <KTp/Models/flat-model-proxy.h>
+#include <KTp/Widgets/contact-grid-widget.h>
 
 //FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
 #define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KTp.FileTransfer"
-
-
-class ContactGridDelegate : public QAbstractItemDelegate {
-public:
-    ContactGridDelegate(QObject *parent);
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
-};
-
-ContactGridDelegate::ContactGridDelegate(QObject *parent)
-    : QAbstractItemDelegate(parent)
-{
-
-}
-
-void ContactGridDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    QStyle *style = QApplication::style();
-    int textHeight = option.fontMetrics.height()*2;
-
-    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
-
-    QRect avatarRect = option.rect.adjusted(0,0,0,-textHeight);
-    QRect textRect = option.rect.adjusted(0,option.rect.height()-textHeight,0,-3);
-
-    QPixmap avatar = index.data(Qt::DecorationRole).value<QPixmap>();
-    if (avatar.isNull()) {
-        avatar = KIcon("im-user-online").pixmap(QSize(70,70));
-    }
-
-    //resize larger avatars
-    if (avatar.width() > 80 || avatar.height()> 80) {
-        avatar = avatar.scaled(QSize(80,80), Qt::KeepAspectRatio);
-        //draw leaving paddings on smaller (or non square) avatars
-    }
-    style->drawItemPixmap(painter, avatarRect, Qt::AlignCenter, avatar);
-
-
-    QTextOption textOption;
-    textOption.setAlignment(Qt::AlignCenter);
-    textOption.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-    painter->drawText(textRect, index.data().toString(), textOption);
-
-}
-
-QSize ContactGridDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    Q_UNUSED(index);
-    int textHeight = option.fontMetrics.height()*2;
-    return QSize(84, 80 + textHeight + 3);
-}
 
 
 MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
@@ -158,21 +101,20 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
                                                   contactFactory);
 
     m_accountsModel = new AccountsModel(this);
-    AccountsFilterModel *filterModel = new AccountsFilterModel(this);
-    filterModel->setSourceModel(m_accountsModel);
-    filterModel->setPresenceTypeFilterFlags(AccountsFilterModel::ShowOnlyConnected);
-    filterModel->setCapabilityFilterFlags(AccountsFilterModel::FilterByFileTransferCapability);
-
-    connect(ui->filterBar, SIGNAL(textChanged(QString)),
-            filterModel, SLOT(setFilterString(QString)));
-
-    FlatModelProxy *flatProxyModel = new FlatModelProxy(filterModel);
-
-    ui->listView->setModel(flatProxyModel);
-    ui->listView->setItemDelegate(new ContactGridDelegate(this));
-
     connect(m_accountManager->becomeReady(), SIGNAL(finished(Tp::PendingOperation*)), SLOT(onAccountManagerReady()));
 
+
+    m_contactGridWidget = new KTp::ContactGridWidget(m_accountsModel, this);
+    m_contactGridWidget->contactFilterLineEdit()->setClickMessage(i18n("Search in Contacts..."));
+    m_contactGridWidget->filter()->setPresenceTypeFilterFlags(AccountsFilterModel::ShowOnlyConnected);
+    m_contactGridWidget->filter()->setCapabilityFilterFlags(AccountsFilterModel::FilterByFileTransferCapability);
+    ui->recipientVLayout->addWidget(m_contactGridWidget);
+
+    connect(m_contactGridWidget,
+            SIGNAL(selectionChanged(Tp::AccountPtr,Tp::ContactPtr)),
+            SLOT(onContactSelectionChanged(Tp::AccountPtr,Tp::ContactPtr)));
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setDisabled(true);
     connect(ui->buttonBox, SIGNAL(accepted()), SLOT(onDialogAccepted()));
     connect(ui->buttonBox, SIGNAL(rejected()), SLOT(close()));
 }
@@ -190,14 +132,13 @@ void MainWindow::onAccountManagerReady()
 void MainWindow::onDialogAccepted()
 {
     // don't do anytghing if no contact has been selected
-    if (!ui->listView->currentIndex().isValid()) {
+    if (!m_contactGridWidget->hasSelection()) {
         // show message box?
         return;
     }
 
-    ContactModelItem *contactModelItem = ui->listView->currentIndex().data(AccountsModel::ItemRole).value<ContactModelItem*>();
-    Tp::ContactPtr contact = contactModelItem->contact();
-    Tp::AccountPtr sendingAccount = m_accountsModel->accountForContactItem(contactModelItem);
+    Tp::ContactPtr contact = m_contactGridWidget->selectedContact();
+    Tp::AccountPtr sendingAccount = m_contactGridWidget->selectedAccount();
 
     if (sendingAccount.isNull()) {
         kDebug() << "sending account: NULL";
@@ -221,6 +162,14 @@ void MainWindow::onDialogAccepted()
     foreach(QAbstractButton* button, ui->buttonBox->buttons()) {
         button->setEnabled(false);
     }
+}
+
+void MainWindow::onContactSelectionChanged(Tp::AccountPtr account, Tp::ContactPtr contact)
+{
+    Q_UNUSED(account)
+    Q_UNUSED(contact)
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(m_contactGridWidget->hasSelection());
 }
 
 void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)

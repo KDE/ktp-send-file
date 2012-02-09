@@ -27,13 +27,18 @@
 
 #include <TelepathyQt/AccountManager>
 
-class KPixmapSequenceOverlayPainter;
+
 namespace Ui {
     class MainWindow;
 }
 
+namespace KTp {
+class ContactGridWidget;
+}
+
 class AccountsModel;
 class KFileItem;
+class KPixmapSequenceOverlayPainter;
 
 class MainWindow : public QWidget
 {
@@ -43,19 +48,20 @@ public:
     explicit MainWindow(const KUrl &url, QWidget *parent = 0);
     ~MainWindow();
 
-private slots:
+private Q_SLOTS:
     void onAccountManagerReady();
     void onDialogAccepted();
     void onPreviewLoaded(const KFileItem &item, const QPixmap &preview);
     void onPreviewFailed(const KFileItem &item);
+    void onContactSelectionChanged(Tp::AccountPtr account, Tp::ContactPtr contact);
     void slotFileTransferFinished(Tp::PendingOperation *op);
 
 private:
     Ui::MainWindow *ui;
     KUrl m_url;
-    AccountsModel *m_accountsModel;
     Tp::AccountManagerPtr m_accountManager;
-
+    AccountsModel *m_accountsModel;
+    KTp::ContactGridWidget *m_contactGridWidget;
     KPixmapSequenceOverlayPainter *m_busyOverlay;
 };
 
