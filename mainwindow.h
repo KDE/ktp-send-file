@@ -52,6 +52,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    KUrl m_url;
     AccountsModel *m_accountsModel;
     Tp::AccountManagerPtr m_accountManager;
 

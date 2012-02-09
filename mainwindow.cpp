@@ -25,7 +25,6 @@
 #include <KFileItemList>
 #include <KIO/PreviewJob>
 #include <KApplication>
-#include <KCmdLineArgs>
 #include <KMimeType>
 #include <KDebug>
 #include <KMessageBox>
@@ -106,6 +105,7 @@ QSize ContactGridDelegate::sizeHint(const QStyleOptionViewItem &option, const QM
 MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow),
+    m_url(url),
     m_accountsModel(0)
 {
     Tp::registerTypes();
@@ -207,10 +207,8 @@ void MainWindow::onDialogAccepted()
     }
 
     // start sending file
-    QString filePath (KCmdLineArgs::parsedArgs()->arg(0));
-    kDebug() << "FILE TO SEND: " << filePath;
-
-    Tp::FileTransferChannelCreationProperties fileTransferProperties(filePath, KMimeType::findByFileContent(filePath)->name());
+    kDebug() << "FILE TO SEND: " << m_url.path();
+    Tp::FileTransferChannelCreationProperties fileTransferProperties(m_url.path(), KMimeType::findByFileContent(m_url.path())->name());
 
     Tp::PendingChannelRequest* channelRequest = sendingAccount->createFileTransfer(contact,
                                                                                    fileTransferProperties,
