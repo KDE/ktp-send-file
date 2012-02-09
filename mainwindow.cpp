@@ -31,7 +31,7 @@
 #include <KLineEdit>
 #include <KIO/PreviewJob>
 
-#include <QtGui/QAbstractButton>
+#include <QtGui/QPushButton>
 
 #include <TelepathyQt/AccountManager>
 #include <TelepathyQt/PendingChannelRequest>
@@ -110,6 +110,11 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
     m_contactGridWidget->filter()->setCapabilityFilterFlags(AccountsFilterModel::FilterByFileTransferCapability);
     ui->recipientVLayout->addWidget(m_contactGridWidget);
 
+    connect(m_contactGridWidget,
+            SIGNAL(selectionChanged(Tp::AccountPtr,Tp::ContactPtr)),
+            SLOT(onContactSelectionChanged(Tp::AccountPtr,Tp::ContactPtr)));
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setDisabled(true);
     connect(ui->buttonBox, SIGNAL(accepted()), SLOT(onDialogAccepted()));
     connect(ui->buttonBox, SIGNAL(rejected()), SLOT(close()));
 }
@@ -157,6 +162,14 @@ void MainWindow::onDialogAccepted()
     foreach(QAbstractButton* button, ui->buttonBox->buttons()) {
         button->setEnabled(false);
     }
+}
+
+void MainWindow::onContactSelectionChanged(Tp::AccountPtr account, Tp::ContactPtr contact)
+{
+    Q_UNUSED(account)
+    Q_UNUSED(contact)
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(m_contactGridWidget->hasSelection());
 }
 
 void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
