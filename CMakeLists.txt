@@ -43,9 +43,9 @@ target_link_libraries(ktp-send-file
   ${TELEPATHY_QT4_LIBRARIES}
   ${KTP_LIBRARIES}
   ${KTP_MODELS_LIBRARIES}
+  ${KTP_WIDGETS_LIBRARIES}
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}
-
 )
 
 install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})

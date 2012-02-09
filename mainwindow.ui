@@ -20,7 +20,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="previewVLayout">
        <item>
         <widget class="QLabel" name="label_3">
          <property name="font">
@@ -99,7 +99,7 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout2">
+      <layout class="QVBoxLayout" name="recipientVLayout">
        <item>
         <widget class="QLabel" name="label">
          <property name="font">
@@ -110,56 +110,6 @@
          </property>
          <property name="text">
           <string>Select a recipient</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListView" name="listView">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="sizeIncrement">
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="baseSize">
-          <size>
-           <width>260</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>256</width>
-           <height>192</height>
-          </size>
-         </property>
-         <property name="movement">
-          <enum>QListView::Static</enum>
-         </property>
-         <property name="resizeMode">
-          <enum>QListView::Adjust</enum>
-         </property>
-         <property name="spacing">
-          <number>5</number>
-         </property>
-         <property name="viewMode">
-          <enum>QListView::IconMode</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="KLineEdit" name="filterBar">
-         <property name="clickMessage">
-          <string>Search in Contacts...</string>
-         </property>
-         <property name="showClearButton" stdset="0">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -176,13 +126,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
