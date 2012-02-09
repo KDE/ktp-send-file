@@ -28,7 +28,6 @@ include_directories(
 set(KTP_SEND_FILE_SRCS
     mainwindow.cpp
     main.cpp
-    flat-model-proxy.cpp
 )
 
 set(KTP_SEND_FILE_UI

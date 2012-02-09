@@ -44,11 +44,10 @@
 #include <TelepathyQt/PendingChannelRequest>
 #include <TelepathyQt/PendingReady>
 
-#include "flat-model-proxy.h"
-
 #include <KTp/Models/accounts-model.h>
 #include <KTp/Models/accounts-filter-model.h>
 #include <KTp/Models/contact-model-item.h>
+#include <KTp/Models/flat-model-proxy.h>
 
 //FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
 #define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KTp.FileTransfer"
