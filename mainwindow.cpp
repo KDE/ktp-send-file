@@ -22,8 +22,6 @@
 #include "ui_mainwindow.h"
 
 #include <KFileItem>
-#include <KFileItemList>
-#include <KIO/PreviewJob>
 #include <KApplication>
 #include <KMimeType>
 #include <KDebug>
@@ -31,13 +29,9 @@
 #include <KPixmapSequence>
 #include <KPixmapSequenceOverlayPainter>
 #include <KLineEdit>
-#include <KDE/KIO/PreviewJob>
+#include <KIO/PreviewJob>
 
-#include <QAbstractItemDelegate>
-#include <QPainter>
-#include <QRect>
-#include <QStyle>
-#include <QAbstractButton>
+#include <QtGui/QAbstractButton>
 
 #include <TelepathyQt/AccountManager>
 #include <TelepathyQt/PendingChannelRequest>
@@ -45,8 +39,6 @@
 
 #include <KTp/Models/accounts-model.h>
 #include <KTp/Models/accounts-filter-model.h>
-#include <KTp/Models/contact-model-item.h>
-#include <KTp/Models/flat-model-proxy.h>
 #include <KTp/Widgets/contact-grid-widget.h>
 
 //FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
