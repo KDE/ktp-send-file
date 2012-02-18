@@ -49,7 +49,7 @@ target_link_libraries(ktp-send-file
 )
 
 install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES ktp-send-file.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES ktp-send-file.desktop DESTINATION ${SERVICES_INSTALL_DIR}/ServiceMenus)
 
 macro_display_feature_log()
 
