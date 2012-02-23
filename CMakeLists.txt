@@ -1,5 +1,7 @@
 project(ktp-send-file)
 
+set (KTP_SEND_FILE_VERSION "0.3.60")
+
 set (CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"
      ${CMAKE_MODULE_PATH}
@@ -32,6 +34,8 @@ set(KTP_SEND_FILE_SRCS
 
 set(KTP_SEND_FILE_UI
     mainwindow.ui)
+
+configure_file(version.h.in ${CMAKE_CURRENT_BINARY_DIR}/version.h)
 
 kde4_add_ui_files(KTP_SEND_FILE_SRCS ${KTP_SEND_FILE_UI})
 
