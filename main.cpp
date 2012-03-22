@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     if (args->count() == 0) {
         fileToSend = KFileDialog::getOpenUrl(KUrl("kfiledialog://telepathySendFile"), QString(), 0, i18n("Select File To Send"));
     } else {
-        fileToSend = KCmdLineArgs::parsedArgs()->arg(0);
+        fileToSend = args->arg(0);
     }
 
     if (! fileToSend.isEmpty()) {
