@@ -1,6 +1,6 @@
 project(ktp-send-file)
 
-set (KTP_SEND_FILE_VERSION "0.3.60")
+set (KTP_SEND_FILE_VERSION "0.4")
 
 set (CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"
