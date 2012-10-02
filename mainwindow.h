@@ -36,7 +36,7 @@ namespace KTp {
 class ContactGridWidget;
 }
 
-class AccountsModel;
+class ContactsModel;
 class KFileItem;
 class KPixmapSequenceOverlayPainter;
 
@@ -60,7 +60,7 @@ private:
     Ui::MainWindow *ui;
     KUrl m_url;
     Tp::AccountManagerPtr m_accountManager;
-    AccountsModel *m_accountsModel;
+    ContactsModel *m_contactsModel;
     KTp::ContactGridWidget *m_contactGridWidget;
     KPixmapSequenceOverlayPainter *m_busyOverlay;
 };
