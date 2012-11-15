@@ -37,12 +37,11 @@
 #include <TelepathyQt/PendingChannelRequest>
 #include <TelepathyQt/PendingReady>
 
+#include <KTp/actions.h>
 #include <KTp/Models/contacts-model.h>
 #include <KTp/Models/accounts-filter-model.h>
 #include <KTp/Widgets/contact-grid-widget.h>
 
-//FIXME, copy and paste the approver code for loading this from a config file into this, the contact list and the chat handler.
-#define PREFERRED_FILETRANSFER_HANDLER "org.freedesktop.Telepathy.Client.KTp.FileTransfer"
 
 
 MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
@@ -138,24 +137,10 @@ void MainWindow::onDialogAccepted()
         return;
     }
 
-    Tp::ContactPtr contact = m_contactGridWidget->selectedContact();
-    Tp::AccountPtr sendingAccount = m_contactGridWidget->selectedAccount();
-
-    if (sendingAccount.isNull()) {
-        kDebug() << "sending account: NULL";
-    } else {
-        kDebug() << "Account is: " << sendingAccount->displayName();
-        kDebug() << "sending to: " << contact->alias();
-    }
-
     // start sending file
-    kDebug() << "FILE TO SEND: " << m_url.path();
-    Tp::FileTransferChannelCreationProperties fileTransferProperties(m_url.path(), KMimeType::findByFileContent(m_url.path())->name());
-
-    Tp::PendingChannelRequest* channelRequest = sendingAccount->createFileTransfer(contact,
-                                                                                   fileTransferProperties,
-                                                                                   QDateTime::currentDateTime(),
-                                                                                   PREFERRED_FILETRANSFER_HANDLER);
+    Tp::PendingChannelRequest* channelRequest = KTp::Actions::startFileTransfer(m_contactGridWidget->selectedAccount(),
+                                                                                m_contactGridWidget->selectedContact(),
+                                                                                m_url.path());
 
     connect(channelRequest, SIGNAL(finished(Tp::PendingOperation*)), SLOT(slotFileTransferFinished(Tp::PendingOperation*)));
 
