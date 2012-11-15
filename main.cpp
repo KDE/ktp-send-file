@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
                          ki18n("Telepathy Send File"),
                          KTP_SEND_FILE_VERSION);
     aboutData.addAuthor(ki18n("David Edmundson"), ki18n("Author"), "kde@davidedmundson.co.uk");
+    aboutData.setProductName("telepathy/send-file");
+    aboutData.setProgramIconName(QLatin1String("telepathy-kde"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
