@@ -6,6 +6,7 @@ MimeType=all/allfiles;
 
 [Desktop Action sendFile]
 Name=Send file to IM contact
+Name[bs]=Slanje datoteke na IM kontakt
 Name[ca]=Envia fitxer a contacte de MI
 Name[cs]=Poslat soubor kontaktu na IM
 Name[da]=Send fil til IM-kontakt
