@@ -38,8 +38,9 @@
 #include <TelepathyQt/PendingReady>
 
 #include <KTp/actions.h>
-#include <KTp/Models/contacts-model.h>
-#include <KTp/Models/accounts-filter-model.h>
+#include <KTp/contact-factory.h>
+#include <KTp/Models/contacts-list-model.h>
+#include <KTp/Models/contacts-filter-model.h>
 #include <KTp/Widgets/contact-grid-widget.h>
 
 
@@ -87,7 +88,7 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
                                                                                << Tp::Connection::FeatureRoster
                                                                                << Tp::Connection::FeatureSelfContact);
 
-    Tp::ContactFactoryPtr contactFactory = Tp::ContactFactory::create(Tp::Features()  << Tp::Contact::FeatureAlias
+    Tp::ContactFactoryPtr contactFactory = KTp::ContactFactory::create(Tp::Features()  << Tp::Contact::FeatureAlias
                                                                       << Tp::Contact::FeatureAvatarData
                                                                       << Tp::Contact::FeatureSimplePresence
                                                                       << Tp::Contact::FeatureCapabilities);
@@ -100,14 +101,14 @@ MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
                                                   channelFactory,
                                                   contactFactory);
 
-    m_contactsModel = new ContactsModel(this);
+    m_contactsModel = new KTp::ContactsListModel(this);
     connect(m_accountManager->becomeReady(), SIGNAL(finished(Tp::PendingOperation*)), SLOT(onAccountManagerReady()));
 
 
     m_contactGridWidget = new KTp::ContactGridWidget(m_contactsModel, this);
     m_contactGridWidget->contactFilterLineEdit()->setClickMessage(i18n("Search in Contacts..."));
-    m_contactGridWidget->filter()->setPresenceTypeFilterFlags(AccountsFilterModel::ShowOnlyConnected);
-    m_contactGridWidget->filter()->setCapabilityFilterFlags(AccountsFilterModel::FilterByFileTransferCapability);
+    m_contactGridWidget->filter()->setPresenceTypeFilterFlags(KTp::ContactsFilterModel::ShowOnlyConnected);
+    m_contactGridWidget->filter()->setCapabilityFilterFlags(KTp::ContactsFilterModel::FilterByFileTransferCapability);
     ui->recipientVLayout->addWidget(m_contactGridWidget);
 
     connect(m_contactGridWidget,
