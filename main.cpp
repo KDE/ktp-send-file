@@ -48,16 +48,18 @@ int main(int argc, char *argv[])
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     KApplication app;
 
-    KUrl fileToSend;
+    KUrl::List filesToSend;
 
     if (args->count() == 0) {
-        fileToSend = KFileDialog::getOpenUrl(KUrl("kfiledialog://telepathySendFile"), QString(), 0, i18n("Select File To Send"));
+        filesToSend = KFileDialog::getOpenUrls(KUrl("kfiledialog://telepathySendFile"), QString(), 0, i18n("Select Files To Send"));
     } else {
-        fileToSend = args->arg(0);
+        Q_FOREACH(QString fileToSend, args->allArguments().mid(1)) {
+            filesToSend.append(KUrl(fileToSend));
+        }
     }
 
-    if (! fileToSend.isEmpty()) {
-        MainWindow *w = new MainWindow(fileToSend);
+    if (! filesToSend.isEmpty()) {
+        MainWindow *w = new MainWindow(filesToSend);
         w->show();
         return app.exec();
     } else {

@@ -45,35 +45,53 @@
 
 
 
-MainWindow::MainWindow(const KUrl &url, QWidget *parent) :
+MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow),
-    m_url(url),
+    m_urls(urls),
     m_contactsModel(0)
 {
     Tp::registerTypes();
 
     ui->setupUi(this);
-    setWindowTitle(i18n("Send file - %1", url.fileName()));
+    if (urls.size() == 1) {
+        setWindowTitle(i18n("Send file - %1", urls.first().fileName()));
+
+        ui->filesInfoLabel->hide();
+        ui->fileNameLabel->setText(urls.first().fileName());
+    } else {
+        QString fileNames;
+        Q_FOREACH(const KUrl &file, urls) {
+            fileNames += file.fileName() + " ";
+        }
+        setWindowTitle(i18n("Send files - %1", fileNames.trimmed()));
+
+        ui->messageLabel->setText(i18n("You are about to send these files"));
+        ui->filesInfoLabel->setText(i18n("%1 files selected", QString::number(urls.count())));
+        ui->fileNameLabel->setText(fileNames.replace(" ", "<br />"));
+    }
 
     kDebug() << KApplication::arguments();
 
-    ui->fileNameLabel->setText(url.fileName());
     m_busyOverlay = new KPixmapSequenceOverlayPainter(this);
     m_busyOverlay->setSequence(KPixmapSequence("process-working", 22));
     m_busyOverlay->setWidget(ui->filePreview);
     m_busyOverlay->start();
 
-    KFileItem file(KFileItem::Unknown, KFileItem::Unknown, url);
-    QStringList availablePlugins = KIO::PreviewJob::availablePlugins();
-    KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &availablePlugins);
-    job->setOverlayIconAlpha(0);
-    job->setScaleType(KIO::PreviewJob::Unscaled);
-    connect(job, SIGNAL(gotPreview(KFileItem,QPixmap)),
-            this, SLOT(onPreviewLoaded(KFileItem,QPixmap)));
-    connect(job, SIGNAL(failed(KFileItem)),
-            this, SLOT(onPreviewFailed(KFileItem)));
-
+    if (urls.size() == 1) {
+        KFileItem file(KFileItem::Unknown, KFileItem::Unknown, urls.first());
+        QStringList availablePlugins = KIO::PreviewJob::availablePlugins();
+        KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &availablePlugins);
+        job->setOverlayIconAlpha(0);
+        job->setScaleType(KIO::PreviewJob::Unscaled);
+        connect(job, SIGNAL(gotPreview(KFileItem, QPixmap)),
+                this, SLOT(onPreviewLoaded(KFileItem, QPixmap)));
+        connect(job, SIGNAL(failed(KFileItem)),
+                this, SLOT(onPreviewFailed(KFileItem)));
+    } else {
+        ui->filePreview->setPixmap(QPixmap(DesktopIcon("dialog-information.png", 128)));
+        m_busyOverlay->stop();
+    }
 
     Tp::AccountFactoryPtr  accountFactory = Tp::AccountFactory::create(QDBusConnection::sessionBus(),
                                                                        Tp::Features() << Tp::Account::FeatureCore
@@ -139,11 +157,13 @@ void MainWindow::onDialogAccepted()
     }
 
     // start sending file
-    Tp::PendingChannelRequest* channelRequest = KTp::Actions::startFileTransfer(m_contactGridWidget->selectedAccount(),
-                                                                                m_contactGridWidget->selectedContact(),
-                                                                                m_url.path());
+    Q_FOREACH(const KUrl &url, m_urls) {
+        Tp::PendingChannelRequest* channelRequest = KTp::Actions::startFileTransfer(m_contactGridWidget->selectedAccount(),
+                                                                                    m_contactGridWidget->selectedContact(),
+                                                                                    url.path());
 
-    connect(channelRequest, SIGNAL(finished(Tp::PendingOperation*)), SLOT(slotFileTransferFinished(Tp::PendingOperation*)));
+        connect(channelRequest, SIGNAL(finished(Tp::PendingOperation*)), SLOT(slotFileTransferFinished(Tp::PendingOperation*)));
+    }
 
     //disable the buttons
     foreach(QAbstractButton* button, ui->buttonBox->buttons()) {
