@@ -67,7 +67,7 @@ MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
         setWindowTitle(i18n("Send files - %1", fileNames.trimmed()));
 
         ui->messageLabel->setText(i18n("You are about to send these files"));
-        ui->filesInfoLabel->setText(i18n("%1 files selected", QString::number(urls.count())));
+        ui->filesInfoLabel->setText(i18np("1 file selected", "%1 files selected",  QString::number(urls.count())));
         ui->fileNameLabel->setText(fileNames.replace(" ", "<br />"));
     }
 
