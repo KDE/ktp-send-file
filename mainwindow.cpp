@@ -130,8 +130,8 @@ MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
     ui->recipientVLayout->addWidget(m_contactGridWidget);
 
     connect(m_contactGridWidget,
-            SIGNAL(selectionChanged(Tp::AccountPtr,Tp::ContactPtr)),
-            SLOT(onContactSelectionChanged(Tp::AccountPtr,Tp::ContactPtr)));
+            SIGNAL(selectionChanged(Tp::AccountPtr,KTp::ContactPtr)),
+            SLOT(onContactSelectionChanged(Tp::AccountPtr,KTp::ContactPtr)));
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setDisabled(true);
     connect(ui->buttonBox, SIGNAL(accepted()), SLOT(onDialogAccepted()));
@@ -171,7 +171,7 @@ void MainWindow::onDialogAccepted()
     }
 }
 
-void MainWindow::onContactSelectionChanged(Tp::AccountPtr account, Tp::ContactPtr contact)
+void MainWindow::onContactSelectionChanged(Tp::AccountPtr account, KTp::ContactPtr contact)
 {
     Q_UNUSED(account)
     Q_UNUSED(contact)

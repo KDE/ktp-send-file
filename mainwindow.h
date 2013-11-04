@@ -26,6 +26,7 @@
 #include <KUrl>
 
 #include <TelepathyQt/AccountManager>
+#include <KTp/contact.h>
 
 
 namespace Ui {
@@ -53,7 +54,7 @@ private Q_SLOTS:
     void onDialogAccepted();
     void onPreviewLoaded(const KFileItem &item, const QPixmap &preview);
     void onPreviewFailed(const KFileItem &item);
-    void onContactSelectionChanged(Tp::AccountPtr account, Tp::ContactPtr contact);
+    void onContactSelectionChanged(Tp::AccountPtr account, KTp::ContactPtr contact);
     void slotFileTransferFinished(Tp::PendingOperation *op);
 
 private:
