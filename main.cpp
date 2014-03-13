@@ -25,6 +25,7 @@
 #include <KLocale>
 #include <KUrl>
 #include <KFileDialog>
+#include <KPushButton>
 #include <KDebug>
 
 #include "mainwindow.h"
@@ -51,7 +52,13 @@ int main(int argc, char *argv[])
     KUrl::List filesToSend;
 
     if (args->count() == 0) {
-        filesToSend = KFileDialog::getOpenUrls(KUrl("kfiledialog://telepathySendFile"), QString(), 0, i18n("Select Files To Send"));
+        KFileDialog *fileDialog = new KFileDialog(KUrl("kfiledialog://telepathySendFile"), QString(), 0);
+	fileDialog->setOperationMode(KFileDialog::Opening);
+	fileDialog->setWindowTitle(i18n("Select Files To Send"));
+	fileDialog->okButton()->setText(i18n("Send"));
+	fileDialog->exec();
+	filesToSend = fileDialog->selectedUrls();
+	fileDialog->deleteLater();
     } else {
         Q_FOREACH(QString fileToSend, args->allArguments().mid(1)) {
             filesToSend.append(KUrl(fileToSend));
