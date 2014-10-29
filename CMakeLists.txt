@@ -1,61 +1,43 @@
 project(ktp-send-file)
 
+cmake_minimum_required(VERSION 2.8.12)
+
 set (KTP_SEND_FILE_VERSION "0.8.80")
 
-set (CMAKE_MODULE_PATH
-     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"
-     ${CMAKE_MODULE_PATH}
-)
-cmake_policy(SET CMP0002 OLD)
-
-set(KDE_MIN_VERSION "4.7.0")
 set(IS_KTP_INTERNAL_MODULE TRUE)
-find_package(KDE4 REQUIRED)
-find_package(TelepathyQt4 0.8.9 REQUIRED)
+
+find_package(ECM 1.3.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+
+find_package(Qt5 5.0 REQUIRED COMPONENTS Widgets)
+find_package(KF5 5.0 REQUIRED COMPONENTS KCMUtils KIO IconThemes)
 find_package(KTp REQUIRED)
 
-include(KDE4Defaults)
-include(MacroLibrary)
-
-# Add the compiler flags
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories(
-  ${CMAKE_SOURCE_DIR}
-  ${CMAKE_BINARY_DIR}
-  ${KDE4_INCLUDES}
-  ${TELEPATHY_QT4_INCLUDE_DIR}
-  ${KTP_INCLUDE_DIR}
-)
-
-# Insert your sources here
-set(KTP_SEND_FILE_SRCS
-    mainwindow.cpp
-    main.cpp
-)
-
-set(KTP_SEND_FILE_UI
-    mainwindow.ui)
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+include(FeatureSummary)
 
 configure_file(version.h.in ${CMAKE_CURRENT_BINARY_DIR}/version.h)
 
-kde4_add_ui_files(KTP_SEND_FILE_SRCS ${KTP_SEND_FILE_UI})
+qt5_wrap_ui(KTP_SEND_FILE_SRCS mainwindow.ui)
 
 # Create the plasmoid
-kde4_add_executable(ktp-send-file ${KTP_SEND_FILE_SRCS})
+add_executable(ktp-send-file mainwindow.cpp main.cpp ${KTP_SEND_FILE_SRCS})
 
 # Link against the needed libraries
 target_link_libraries(ktp-send-file
-  ${TELEPATHY_QT4_LIBRARIES}
-  ${KTP_LIBRARIES}
-  ${KTP_MODELS_LIBRARIES}
-  ${KTP_WIDGETS_LIBRARIES}
-  ${KDE4_KDEUI_LIBS}
-  ${KDE4_KIO_LIBS}
+  KTp::CommonInternals
+  KTp::Widgets
+  KTp::Models
+  Qt5::Widgets
+  KF5::CoreAddons
+  KF5::I18n
+  KF5::KIOWidgets
+  KF5::IconThemes
 )
 
 install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ktp-send-file.desktop DESTINATION ${SERVICES_INSTALL_DIR}/ServiceMenus)
 
-macro_display_feature_log()
-
-
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

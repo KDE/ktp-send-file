@@ -22,16 +22,15 @@
 #include "ui_mainwindow.h"
 
 #include <KFileItem>
-#include <KApplication>
-#include <KMimeType>
-#include <KDebug>
-#include <KMessageBox>
 #include <KPixmapSequence>
 #include <KPixmapSequenceOverlayPainter>
-#include <KLineEdit>
+#include <KLocalizedString>
+#include <KIconLoader>
 #include <KIO/PreviewJob>
 
-#include <QtGui/QPushButton>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QLineEdit>
 
 #include <TelepathyQt/AccountManager>
 #include <TelepathyQt/PendingChannelRequest>
@@ -43,9 +42,7 @@
 #include <KTp/Models/contacts-filter-model.h>
 #include <KTp/Widgets/contact-grid-widget.h>
 
-
-
-MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
+MainWindow::MainWindow(const QList<QUrl> &urls, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow),
     m_urls(urls),
@@ -61,7 +58,7 @@ MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
         ui->fileNameLabel->setText(urls.first().fileName());
     } else {
         QString fileNames;
-        Q_FOREACH(const KUrl &file, urls) {
+        Q_FOREACH(const QUrl &file, urls) {
             fileNames += file.fileName() + " ";
         }
         setWindowTitle(i18n("Send files - %1", fileNames.trimmed()));
@@ -71,15 +68,13 @@ MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
         ui->fileNameLabel->setText(fileNames.replace(" ", "<br />"));
     }
 
-    kDebug() << KApplication::arguments();
-
     m_busyOverlay = new KPixmapSequenceOverlayPainter(this);
     m_busyOverlay->setSequence(KPixmapSequence("process-working", 22));
     m_busyOverlay->setWidget(ui->filePreview);
     m_busyOverlay->start();
 
     if (urls.size() == 1) {
-        KFileItem file(KFileItem::Unknown, KFileItem::Unknown, urls.first());
+        KFileItem file(urls.first());
         QStringList availablePlugins = KIO::PreviewJob::availablePlugins();
         KIO::PreviewJob* job = KIO::filePreview(KFileItemList() << file, QSize(280, 280), &availablePlugins);
         job->setOverlayIconAlpha(0);
@@ -124,7 +119,7 @@ MainWindow::MainWindow(const KUrl::List &urls, QWidget *parent) :
 
 
     m_contactGridWidget = new KTp::ContactGridWidget(m_contactsModel, this);
-    m_contactGridWidget->contactFilterLineEdit()->setClickMessage(i18n("Search in Contacts..."));
+    m_contactGridWidget->contactFilterLineEdit()->setPlaceholderText(i18n("Search in Contacts..."));
     m_contactGridWidget->filter()->setPresenceTypeFilterFlags(KTp::ContactsFilterModel::ShowOnlyConnected);
     m_contactGridWidget->filter()->setCapabilityFilterFlags(KTp::ContactsFilterModel::FilterByFileTransferCapability);
     ui->recipientVLayout->addWidget(m_contactGridWidget);
@@ -157,10 +152,10 @@ void MainWindow::onDialogAccepted()
     }
 
     // start sending file
-    Q_FOREACH(const KUrl &url, m_urls) {
-        Tp::PendingChannelRequest* channelRequest = KTp::Actions::startFileTransfer(m_contactGridWidget->selectedAccount(),
-                                                                                    m_contactGridWidget->selectedContact(),
-                                                                                    url.path());
+    Q_FOREACH(const QUrl &url, m_urls) {
+        Tp::PendingOperation* channelRequest = KTp::Actions::startFileTransfer(m_contactGridWidget->selectedAccount(),
+                                                                               m_contactGridWidget->selectedContact(),
+                                                                               url);
 
         connect(channelRequest, SIGNAL(finished(Tp::PendingOperation*)), SLOT(slotFileTransferFinished(Tp::PendingOperation*)));
     }
@@ -184,11 +179,10 @@ void MainWindow::slotFileTransferFinished(Tp::PendingOperation* op)
     if (op->isError()) {
         //FIXME map to human readable strings.
         QString errorMsg(op->errorName() + ": " + op->errorMessage());
-        kDebug() << "ERROR!: " << errorMsg;
-        KMessageBox::error(this, i18n("Failed to send file"), i18n("File Transfer Failed"));
+        qWarning() << "ERROR!: " << errorMsg;
+        QMessageBox::warning(this, i18n("Failed to send file"), i18n("File Transfer Failed"));
         close();
     } else {
-        kDebug() << "Transfer started";
         // now I can close the dialog
         close();
     }
@@ -203,7 +197,7 @@ void MainWindow::onPreviewLoaded(const KFileItem& item, const QPixmap& preview)
 
 void MainWindow::onPreviewFailed(const KFileItem& item)
 {
-    kWarning() << "Loading thumb failed" << item.name();
+    qWarning() << "Loading thumb failed" << item.name();
     ui->filePreview->setPixmap(KIconLoader::global()->loadIcon(item.iconName(), KIconLoader::Desktop, 128));
     m_busyOverlay->stop();
 }

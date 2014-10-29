@@ -23,8 +23,6 @@
 
 #include <QWidget>
 
-#include <KUrl>
-
 #include <TelepathyQt/AccountManager>
 #include <KTp/contact.h>
 
@@ -46,7 +44,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(const KUrl::List &urls, QWidget *parent = 0);
+    explicit MainWindow(const QList<QUrl> &urls, QWidget *parent = 0);
     ~MainWindow();
 
 private Q_SLOTS:
@@ -59,7 +57,7 @@ private Q_SLOTS:
 
 private:
     Ui::MainWindow *ui;
-    KUrl::List m_urls;
+    QList<QUrl> m_urls;
     Tp::AccountManagerPtr m_accountManager;
     KTp::ContactsListModel *m_contactsModel;
     KTp::ContactGridWidget *m_contactGridWidget;

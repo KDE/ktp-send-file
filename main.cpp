@@ -19,49 +19,45 @@
  */
 
 // KDE
-#include <KCmdLineArgs>
-#include <KApplication>
+#include <QFileDialog>
+#include <KLocalizedString>
 #include <KAboutData>
-#include <KLocale>
-#include <KUrl>
-#include <KFileDialog>
-#include <KPushButton>
-#include <KDebug>
+#include <QApplication>
+#include <QPushButton>
 
 #include "mainwindow.h"
 #include "version.h"
 
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("ktp-send-file", 0,
-                         ki18n("Telepathy Send File"),
+    QApplication app(argc, argv);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("telepathy-kde")));
+    KAboutData aboutData("ktp-send-file",
+                         i18n("Telepathy Send File"),
                          KTP_SEND_FILE_VERSION);
-    aboutData.addAuthor(ki18n("David Edmundson"), ki18n("Author"), "kde@davidedmundson.co.uk");
+    aboutData.addAuthor(i18n("David Edmundson"), i18n("Author"), "kde@davidedmundson.co.uk");
     aboutData.setProductName("telepathy/send-file");
-    aboutData.setProgramIconName(QLatin1String("telepathy-kde"));
+    KAboutData::setApplicationData(aboutData);
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    QCommandLineParser parser;
+    parser.addPositionalArgument("file", i18n("The files to send"), i18n("[files...]"));
+    parser.addHelpOption();
+    aboutData.setupCommandLine(&parser);
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
 
-    KCmdLineOptions options;
-    options.add("+file", ki18n("The file to send"));
-    KCmdLineArgs::addCmdLineOptions(options);
 
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    KApplication app;
+    QList<QUrl> filesToSend;
 
-    KUrl::List filesToSend;
-
-    if (args->count() == 0) {
-        KFileDialog *fileDialog = new KFileDialog(KUrl("kfiledialog://telepathySendFile"), QString(), 0);
-	fileDialog->setOperationMode(KFileDialog::Opening);
-	fileDialog->setWindowTitle(i18n("Select Files To Send"));
-	fileDialog->okButton()->setText(i18n("Send"));
-	fileDialog->exec();
-	filesToSend = fileDialog->selectedUrls();
-	fileDialog->deleteLater();
+    if (parser.positionalArguments().isEmpty()) {
+        QFileDialog *fileDialog = new QFileDialog(Q_NULLPTR, i18n("Select Files To Send"));
+        fileDialog->setAcceptMode(QFileDialog::AcceptOpen);
+        fileDialog->exec();
+        filesToSend = fileDialog->selectedUrls();
+        fileDialog->deleteLater();
     } else {
-        Q_FOREACH(QString fileToSend, args->allArguments().mid(1)) {
-            filesToSend.append(KUrl(fileToSend));
+        Q_FOREACH(const QString &fileToSend, parser.positionalArguments()) {
+            filesToSend.append(QUrl::fromUserInput(fileToSend));
         }
     }
 
