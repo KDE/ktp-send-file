@@ -2,7 +2,7 @@ project(ktp-send-file)
 
 cmake_minimum_required(VERSION 2.8.12)
 
-set (KTP_SEND_FILE_VERSION "0.9.80")
+set (KTP_SEND_FILE_VERSION "15.03.95")
 
 set(IS_KTP_INTERNAL_MODULE TRUE)
 
