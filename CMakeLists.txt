@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 2.8.9)
 project(ktp-send-file)
 
 set (KTP_SEND_FILE_VERSION "0.9.0")
