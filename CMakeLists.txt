@@ -19,7 +19,7 @@ find_package(KTp REQUIRED)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(FeatureSummary)
 
 configure_file(version.h.in ${CMAKE_CURRENT_BINARY_DIR}/version.h)
