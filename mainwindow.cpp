@@ -25,7 +25,6 @@
 #include <KPixmapSequence>
 #include <KPixmapSequenceOverlayPainter>
 #include <KLocalizedString>
-#include <KIconLoader>
 #include <KIO/PreviewJob>
 
 #include <QPushButton>
@@ -84,7 +83,7 @@ MainWindow::MainWindow(const QList<QUrl> &urls, QWidget *parent) :
         connect(job, SIGNAL(failed(KFileItem)),
                 this, SLOT(onPreviewFailed(KFileItem)));
     } else {
-        ui->filePreview->setPixmap(QPixmap(DesktopIcon("dialog-information.png", 128)));
+        ui->filePreview->setPixmap(QIcon::fromTheme(QStringLiteral("dialog-information.png")).pixmap(128));
         m_busyOverlay->stop();
     }
 
@@ -198,6 +197,6 @@ void MainWindow::onPreviewLoaded(const KFileItem& item, const QPixmap& preview)
 void MainWindow::onPreviewFailed(const KFileItem& item)
 {
     qWarning() << "Loading thumb failed" << item.name();
-    ui->filePreview->setPixmap(KIconLoader::global()->loadIcon(item.iconName(), KIconLoader::Desktop, 128));
+    ui->filePreview->setPixmap(QIcon::fromTheme(item.iconName()).pixmap(128));
     m_busyOverlay->stop();
 }

@@ -38,7 +38,6 @@ target_link_libraries(ktp-send-file
   KF5::CoreAddons
   KF5::I18n
   KF5::KIOWidgets
-  KF5::IconThemes
 )
 
 install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
