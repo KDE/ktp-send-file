@@ -42,6 +42,5 @@ target_link_libraries(ktp-send-file
 )
 
 install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES ktp-send-file.desktop DESTINATION ${SERVICES_INSTALL_DIR}/ServiceMenus)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
