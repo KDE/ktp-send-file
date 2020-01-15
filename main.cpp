@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 
     QCommandLineParser parser;
     parser.addPositionalArgument("file", i18n("The files to send"), i18n("[files...]"));
-    parser.addHelpOption();
     aboutData.setupCommandLine(&parser);
     parser.process(app);
     aboutData.processCommandLine(&parser);
