@@ -14,7 +14,7 @@ find_package(ECM 1.3.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 5.0 REQUIRED COMPONENTS Widgets)
-find_package(KF5 5.0 REQUIRED COMPONENTS KCMUtils KIO IconThemes I18n)
+find_package(KF5 5.0 REQUIRED COMPONENTS KCMUtils KIO I18n)
 find_package(KTp REQUIRED)
 
 include(KDEInstallDirs)
