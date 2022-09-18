@@ -8,7 +8,7 @@ set (KTP_SEND_FILE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_V
 
 project(ktp-send-file VERSION ${KTP_SEND_FILE_VERSION})
 
-find_package(ECM 1.3.0 REQUIRED NO_MODULE)
+find_package(ECM 1.6.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 find_package(Qt5 5.0 REQUIRED COMPONENTS Widgets)
@@ -38,7 +38,7 @@ target_link_libraries(ktp-send-file
   KF5::KIOWidgets
 )
 
-install(TARGETS ktp-send-file ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS ktp-send-file ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ki18n_install(po)
 
