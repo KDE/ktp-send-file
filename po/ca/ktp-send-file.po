@@ -1,0 +1,120 @@
+# Translation of ktp-send-file.po to Catalan
+# Copyright (C) 2012-2021 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Josep M. Ferrer <txemaq@gmail.com>, 2012, 2013, 2014, 2021.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: ktp-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2021-10-10 20:15+0200\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Josep M. Ferrer"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "txemaq@gmail.com"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Enviament de fitxer del Telepathy"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Autor"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "Els fitxers a enviar"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[fitxers...]"
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "Selecció dels fitxers a enviar"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Envia el fitxer - %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Envia els fitxers - %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Esteu a punt d'enviar aquests fitxers"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "S'ha seleccionat 1 fitxer"
+msgstr[1] "S'han seleccionat %1 fitxers"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Cerca en els contactes..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Ha fallat en enviar el fitxer"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Ha fallat la transferència del fitxer"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Esteu a punt d'enviar aquest fitxer"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Informació dels fitxers"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "Seleccioneu un destinatari"
+
+#~ msgid "Send"
+#~ msgstr "Envia"

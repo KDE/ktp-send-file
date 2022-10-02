@@ -1,0 +1,119 @@
+# translation of ktp-send-file.po to Khmer
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: ktp-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2012-07-10 10:30+0700\n"
+"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"Language-Team: Khmer\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "ខឹម សុខែម, ម៉ន ម៉េត, សេង សុត្ថា, ចាន់ សម្បត្តិរតនៈ, សុខ សុភា"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"khoemsokhem@khmeros.info,​​mornmet@khmeros.info,sutha@khmeros.info,"
+"ratanak@khmeros.info,sophea@khmeros.info"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Telepathy ផ្ញើ​ឯកសារ"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "អ្នកនិពន្ធ"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "The file to send"
+msgid "The files to send"
+msgstr "ឯកសារ​ត្រូវ​ផ្ញើ"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr ""
+
+#: main.cpp:52
+#, fuzzy, kde-format
+#| msgid "Select File To Send"
+msgid "Select Files To Send"
+msgstr "ជ្រើស​ឯកសារ​ត្រូវ​ផ្ញើ"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "ផ្ញើ​ឯកសារ - %1"
+
+#: mainwindow.cpp:63
+#, fuzzy, kde-format
+#| msgid "Send file - %1"
+msgid "Send files - %1"
+msgstr "ផ្ញើ​ឯកសារ - %1"
+
+#: mainwindow.cpp:65
+#, fuzzy, kde-format
+#| msgid "You are about to send this file"
+msgid "You are about to send these files"
+msgstr "អ្នក​រៀប​នឹង​ផ្ញើ​ឯកសារ​នេះ"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] ""
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "ស្វែងរក​ក្នុង​ទំនាក់ទំនង..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "បានបរាជ័យ​ក្នុងកា​រផ្ញើ​ឯកសារ"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "បានបរាជ័យ​ក្នុងកា​រ​ផ្ទេរ​ឯកសារ"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "អ្នក​រៀប​នឹង​ផ្ញើ​ឯកសារ​នេះ"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "ជ្រើស​អ្នក​ទទួល"

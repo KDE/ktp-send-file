@@ -1,0 +1,128 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Martin Schlander <mschlander@opensuse.org>, 2011, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2014-12-22 20:44+0100\n"
+"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"Language-Team: Danish <kde-i18n-doc@kde.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Martin Schlander"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "mschlander@opensuse.org"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Send fil med Telepathy"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Ophavsmand"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "Filerne der skal sendes"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[filer...]"
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "Vælg filer der skal sendes"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Send fil - %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Send filer - %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Du er ved at sende disse filer"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "1 fil markeret"
+msgstr[1] "%1 filer markeret"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Søg i kontakter..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Kunne ikke sende filen"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Filoverførsel mislykkedes"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Kunne er ved at sende denne fil"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Filinfo"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "Vælg en modtager"
+
+#~ msgid "Send"
+#~ msgstr "Send"
+
+#~ msgid "Select Recipient"
+#~ msgstr "Vælg modtager"
+
+#~ msgid "MainWindow"
+#~ msgstr "Hovedvindue"
+
+#~ msgid "Description here"
+#~ msgstr "Beskrivelse her"
+
+#~ msgid "(c) KDE"
+#~ msgstr "(c) KDE"

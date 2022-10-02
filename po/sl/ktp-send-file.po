@@ -1,0 +1,121 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Andrej Vernekar <andrej.vernekar@gmail.com>, 2012.
+# Andrej Mernik <andrejm@ubuntu.si>, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2020-02-23 20:29+0100\n"
+"Last-Translator: \n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 2.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Andrej Vernekar,Andrej Mernik,Matjaž Jeran"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "andrej.vernekar@gmail.com,andrejm@ubuntu.si,matjaz.jeran@amis.net"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Pošiljanje datotek za Telepathy"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Avtor"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "Datoteke, ki se naj pošljejo"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[datoteke ...]"
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "Izberite datoteke, ki se naj pošljejo"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Pošlji datoteko - %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Pošlji datoteke - %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Pravkar boste poslali te datoteke"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "%1 izbrana datoteka"
+msgstr[1] "%1 izbrani datoteki"
+msgstr[2] "%1 izbrane datoteke"
+msgstr[3] "%1 izbranih datotek"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Poišči v stikih ..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Ni bilo mogoče poslati datoteke"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Prenos datoteke ni uspel"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Pravkar boste poslali to datoteko"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Podrobnosti o datotekah"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "Izberite prejemnika"
+
+#~ msgid "Send"
+#~ msgstr "Pošlji"

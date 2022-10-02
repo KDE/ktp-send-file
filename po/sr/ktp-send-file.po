@@ -1,0 +1,118 @@
+# Translation of ktp-send-file.po into Serbian.
+# Mladen Pejakovic <pejakm@gmail.com>, 2012.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2012, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: ktp-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2014-11-15 18:31+0100\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Младен Пејаковић"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "pejakm@gmail.com"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Телепатијско слање фајла"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "Дејвид Едмундсон"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Аутор"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "Фајлови за слање"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[фајлови...]"
+
+# >> @title:window
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "Избор фајлова за слање"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Слање фајла — %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Слање фајлова — %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Послаћете ове фајлове"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "%1 фајл изабран"
+msgstr[1] "%1 фајла изабрана"
+msgstr[2] "%1 фајлова изабрано"
+msgstr[3] "1 фајл изабран"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Тражи у контактима..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Неуспех слања фајла"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Пренос фајла није успео"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Послаћете овај фајл"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Подаци о фајловима"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "Изаберите примаоца"

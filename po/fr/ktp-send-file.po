@@ -1,0 +1,121 @@
+# translation of ktp-send-file.po to Français
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Joëlle Cornavin <jcorn@free.fr>, 2012, 2013, 2014.
+# Maxime Corteel <mcorteel@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ktp-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2014-12-07 17:00+0100\n"
+"Last-Translator: Maxime Corteel <mcorteel@gmail.com>\n"
+"Language-Team: French <kde-francophone@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Joëlle Cornavin, Maxime Corteel"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "jcorn@free.fr, mcorteel@gmail.com"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Envoi de fichiers via Telepathy"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Auteur"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "Les fichiers à envoyer"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[fichiers...]"
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "Sélectionner les fichiers à envoyer"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Envoyer un fichier - %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Envoyer des fichiers - %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Vous êtes sur le point d'envoyer ces fichiers"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "Un seul fichier sélectionné"
+msgstr[1] "%1 fichiers sélectionnés"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Chercher dans les contacts..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Impossible d'envoyer un fichier"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Le transfert de fichier(s) a échoué"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Vous êtes sur le point d'envoyer ce fichier"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Informations sur les fichiers"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "Sélectionner un destinataire"
+
+#~ msgid "Send"
+#~ msgstr "Envoyer"

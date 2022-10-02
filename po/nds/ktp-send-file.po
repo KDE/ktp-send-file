@@ -1,0 +1,131 @@
+# translation of telepathy-kde-send-file.po to Low Saxon
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Manfred Wiese <m.j.wiese@web.de>, 2011.
+# Sönke Dibbern <s_dibbern@web.de>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: telepathy-kde-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2014-06-05 17:55+0200\n"
+"Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
+"Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
+"Language: nds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Manfred Wiese, Sönke Dibbern"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "m.j.wiese@web.de, s_dibbern@web.de"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Telepathy-Dateiöverdregen"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Autor"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "The file to send"
+msgid "The files to send"
+msgstr "De Datei, de Du loosstüern wullt"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr ""
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "De Dateien utsöken, de Du loosstüern wullt"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Datei &loosstüern - %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Dateien loosstüern - %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Du wullt disse Dateien loosstüern"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "1 Datei utsöcht"
+msgstr[1] "%1 Dateien utsöcht"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Binnen Kontakten söken..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Datei lett sik nich loosstüern"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Dateiöverdregen fehlslaan"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Du wullt disse Datei loosstüern"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Datei-Info"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "En Adressaat utsöken"
+
+#~ msgid "Send"
+#~ msgstr "Loosstüern"
+
+#~ msgid "Select Recipient"
+#~ msgstr "Adressaat utsöken"
+
+#~ msgid "MainWindow"
+#~ msgstr "Hööftfinster"
+
+#~ msgid "Description here"
+#~ msgstr "Hier kummt en Beschrieven hen"
+
+#~ msgid "(c) KDE"
+#~ msgstr "© KDE"

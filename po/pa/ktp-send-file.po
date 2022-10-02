@@ -1,0 +1,114 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# A S Alam <aalam@users.sf.net>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2013-05-04 22:29+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"Language: pa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "aalam@users.sf.net"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "ਟੈਲੀਪੈਥੀ ਫਾਇਲ ਭੇਜੋ"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr ""
+
+#: main.cpp:38
+#, fuzzy, kde-format
+msgid "Author"
+msgstr "ਲੇਖਕ"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "The file to send"
+msgid "The files to send"
+msgstr "ਭੇਜਣ ਲਈ ਫਾਇਲ"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr ""
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr ""
+
+#: mainwindow.cpp:54
+#, fuzzy, kde-format
+msgid "Send file - %1"
+msgstr "ਫਾਇਲ ਭੇਜੋ(&F)..."
+
+#: mainwindow.cpp:63
+#, fuzzy, kde-format
+msgid "Send files - %1"
+msgstr "...ਫਾਇਲਾਂ ਭੇਜੋ"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr ""
+
+#: mainwindow.cpp:66
+#, fuzzy, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "<b>1</b> ਫਾਇਲ ਚੁਣੀ।"
+msgstr[1] "%1 ਫਾਇਲਾਂ ਚੁਣੀਆਂ"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr ""
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr ""
+
+#: mainwindow.cpp:182
+#, fuzzy, kde-format
+msgid "File Transfer Failed"
+msgstr "ਫਾਇਲ ਟਰਾਂਸਫਰ %1 ਫੇਲ੍ਹ ਹੋਈ। "
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "ਫਾਇਲ ਜਾਣਕਾਰੀ"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr ""

@@ -1,0 +1,114 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the ktp-send-file package.
+#
+# Sameer Singh <lumarzeli30@gmail.com>, 2021.
+# Raghavendra Kamath <raghu@raghukamath.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: ktp-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2021-06-27 15:40+0530\n"
+"Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
+"Language-Team: kde-hindi\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 21.04.2\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "समीर सिंह, राघवेंद्र कामत"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "lumarzeli30@gmail.com, raghu@raghukamath.com"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "टेलीपैथी फ़ाइल भेजें"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "डेविड एडमंडसन"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "लेखक"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "फ़ाइलें जो भेजनी हैं"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[फ़ाइलें...]"
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "भेजने के लिए फ़ाइलों का चुनाव करें"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "%1 - फ़ाइल भेजें"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "%1 - फ़ाइलें भेजें"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "आप इन फ़ाइलों को भेजने वाले हैं"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "१ फ़ाइल चयनित"
+msgstr[1] "%1 फ़ाइलें चयनित"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "सम्पर्कों में ढुंढ़े..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "इस फ़ाइल को भेज नहीं सके"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "फ़ाइल स्थानांतरण असफल"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "आप इस फ़ाइल को भेजने वाले हैं"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "फ़ाइलों की जानकारी"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "एक प्राप्तकर्ता चुनें"

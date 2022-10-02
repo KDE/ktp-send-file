@@ -1,0 +1,125 @@
+# Frederik Schwarzer <schwarzer@kde.org>, 2011, 2012.
+# Burkhard Lück <lueck@hube-lueck.de>, 2012, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: ktp-send-file\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-01-16 03:16+0100\n"
+"PO-Revision-Date: 2014-11-15 18:53+0100\n"
+"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Frederik Schwarzer"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "schwarzer@kde.org"
+
+#: main.cpp:36
+#, kde-format
+msgid "Telepathy Send File"
+msgstr "Telepathy-Dateiübertragung"
+
+#: main.cpp:38
+#, kde-format
+msgid "David Edmundson"
+msgstr "David Edmundson"
+
+#: main.cpp:38
+#, kde-format
+msgid "Author"
+msgstr "Autor"
+
+#: main.cpp:43
+#, kde-format
+msgid "The files to send"
+msgstr "Zu sendende Dateien"
+
+#: main.cpp:43
+#, kde-format
+msgid "[files...]"
+msgstr "[datei ...]"
+
+#: main.cpp:52
+#, kde-format
+msgid "Select Files To Send"
+msgstr "Dateien zum Senden auswählen"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Send file - %1"
+msgstr "Datei senden - %1"
+
+#: mainwindow.cpp:63
+#, kde-format
+msgid "Send files - %1"
+msgstr "Dateien senden - %1"
+
+#: mainwindow.cpp:65
+#, kde-format
+msgid "You are about to send these files"
+msgstr "Sie sind dabei, diese Dateien zu senden"
+
+#: mainwindow.cpp:66
+#, kde-format
+msgid "1 file selected"
+msgid_plural "%1 files selected"
+msgstr[0] "1 Datei ausgewählt"
+msgstr[1] "%1 Dateien ausgewählt"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Search in Contacts..."
+msgstr "Suche in Kontakten ..."
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "Failed to send file"
+msgstr "Das Senden der Datei ist fehlgeschlagen"
+
+#: mainwindow.cpp:182
+#, kde-format
+msgid "File Transfer Failed"
+msgstr "Dateiübertragung fehlgeschlagen"
+
+#. i18n: ectx: property (text), widget (QLabel, messageLabel)
+#: mainwindow.ui:33
+#, kde-format
+msgid "You are about to send this file"
+msgstr "Sie sind dabei, diese Datei zu senden"
+
+#. i18n: ectx: property (text), widget (QLabel, filesInfoLabel)
+#: mainwindow.ui:84
+#, kde-format
+msgid "Files info"
+msgstr "Dateiinformation"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: mainwindow.ui:134
+#, kde-format
+msgid "Select a recipient"
+msgstr "Einen Empfänger auswählen"
+
+#~ msgid "Send"
+#~ msgstr "Senden"
+
+#~ msgid "Select Recipient"
+#~ msgstr "Empfänger auswählen"
+
+#~ msgid "MainWindow"
+#~ msgstr "Hauptfenster"
+
+#~ msgid "Description here"
+#~ msgstr "Beschreibung"
+
+#~ msgid "(c) KDE"
+#~ msgstr "© KDE"
