@@ -49,7 +49,7 @@ msgstr "Autoria"
 #: main.cpp:43
 #, kde-format
 msgid "The files to send"
-msgstr "Els fitxers que s'enviaran"
+msgstr "Els fitxers que s'han d'enviar"
 
 #: main.cpp:43
 #, kde-format
@@ -59,7 +59,7 @@ msgstr "[fitxers...]"
 #: main.cpp:52
 #, kde-format
 msgid "Select Files To Send"
-msgstr "Selecció dels fitxers que s'enviaran"
+msgstr "Selecció dels fitxers que s'han d'enviar"
 
 #: mainwindow.cpp:54
 #, kde-format
