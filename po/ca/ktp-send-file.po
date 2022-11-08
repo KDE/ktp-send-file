@@ -115,6 +115,3 @@ msgstr "Informació dels fitxers"
 #, kde-format
 msgid "Select a recipient"
 msgstr "Seleccioneu un destinatari"
-
-#~ msgid "Send"
-#~ msgstr "Envia"
