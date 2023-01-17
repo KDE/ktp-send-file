@@ -59,7 +59,7 @@ msgstr "[fitxers...]"
 #: main.cpp:52
 #, kde-format
 msgid "Select Files To Send"
-msgstr "Selecció dels fitxers que s'enviaran"
+msgstr "Seleccioneu els fitxers que s'enviaran"
 
 #: mainwindow.cpp:54
 #, kde-format
